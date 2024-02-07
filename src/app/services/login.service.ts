@@ -1,56 +1,40 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-export interface LoginFormGroup {
-  username: FormControl<string | null>;
-  password: FormControl<string | null>;
-}
-
-export interface LoginCredentials {
-  username: string;
-  password: string;
-}
+import { LoginCredentials, User } from '../models/User';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  mockData: LoginCredentials[] = [
+  private _currentUser: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  currentUser$: Observable<User | null> = this._currentUser.asObservable();
+
+  mockData: User[] = [
     {
+      id: 5213,
       username: 'Pera',
       password: '123'
     },
     {
+      id: 6124,
       username: 'Mika',
       password: '1234'
     },
     {
+      id: 1523,
       username: 'Laza',
       password: '12345'
     }
   ];
-  
-  initializeLoginForm(): FormGroup {
-    return new FormGroup({
-      username: new FormControl<string>('', Validators.required),
-      password: new FormControl<string>('', Validators.required)
-    })
-  }
 
-  approveLogin(credentials: LoginCredentials): boolean {
-    if (!this.checkUsername(credentials.username) || !this.checkPassword(credentials.password)) return false;
-    
-    return true;
-  }
+  approveLogin(loginCredentials: LoginCredentials): boolean {
+    const foundUser = this.mockData.find(user => user.username === loginCredentials.username);
 
-  checkUsername(username: string): boolean {
-    if (!this.mockData.find(el => el.username === username)) return false;
+    if (!foundUser) return false;
 
-    return true;
-  }
+    if (!(foundUser.password === loginCredentials.password)) return false;
 
-  checkPassword(password: string): boolean {
-    if (!this.mockData.find(el => el.password === password)) return false;
+    this._currentUser.next(foundUser);
 
     return true;
   }

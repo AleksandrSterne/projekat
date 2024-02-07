@@ -35,3 +35,14 @@ Login service
 
 Mock data za login 3 username-a
 Bootstrap SCSS
+
+Rutiranje - router module
+Srediti Bootstrap
+Srediti login page i napraviti login komponentu
+Izdvojiti formu u posebnu komponentu
+
+Dodati IDeve i srediti logiku za login - autorizacija i autentikacija
+
+Kako se builda aplikacija - proveriti koliko je velika aplikacija
+Treeshaking
+

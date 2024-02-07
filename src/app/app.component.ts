@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     LoginPageComponent,
-    NgbModule
+    RouterModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
