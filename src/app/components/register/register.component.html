@@ -1,4 +1,4 @@
-<div class="form-signing w-30 m-auto" [formGroup]="loginForm">
+<div class="form-signing w-30 m-auto" [formGroup]="registerForm">
   <div class="form-floating">
     <input
       type="text"
@@ -18,5 +18,15 @@
       formControlName="password"
     />
     <label for="password"> Password </label>
+  </div>
+  <div class="form-floating">
+    <input
+      type="password"
+      class="form-control"
+      id="confirmPassword"
+      placeholder="Confirm password"
+      formControlName="confirmPassword"
+    />
+    <label for="password"> Confirm password </label>
   </div>
 </div>

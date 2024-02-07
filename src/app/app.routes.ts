@@ -1,7 +1,19 @@
 import { Routes } from '@angular/router';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login-page/login-page.component').then(
+        (c) => c.LoginPageComponent
+      ),
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register-page/register-page.component').then(
+        (c) => c.RegisterPageComponent
+      ),
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -46,3 +46,16 @@ Dodati IDeve i srediti logiku za login - autorizacija i autentikacija
 Kako se builda aplikacija - proveriti koliko je velika aplikacija
 Treeshaking
 
+/**
+ * user service
+ * ovde se nalazi mock data
+ * ima funkciju za dodavanje korisnika
+ * ima funkciju za trazenje korisnika po imenu
+ */
+
+
+/**
+ * register component
+ * username, password, confirm password
+ * password i confirm password moraju da se poklapaju
+ */

@@ -1,15 +1,33 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from '../../components/login/login.component';
 import { FormGroup } from '@angular/forms';
-import { LoginForm } from '../../components/form/form.component';
+import { LoginFormGroup } from '../../components/login/login.form';
+import { LoginService } from '../../services/login.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [LoginComponent],
+  imports: [LoginComponent, RouterModule],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss'
+  styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
-  loginForm: FormGroup = new LoginForm();
+  loginForm: FormGroup = new LoginFormGroup();
+
+  constructor(private _loginService: LoginService) {}
+
+  submitLogin() {
+    this.loginForm.markAllAsTouched();
+
+    if (this.loginForm.invalid) return;
+
+    if (!this._loginService.withCredentials(this.loginForm.value)) {
+      alert('Wrong credentials.');
+
+      return;
+    }
+
+    alert('Sucessfull login!');
+  }
 }

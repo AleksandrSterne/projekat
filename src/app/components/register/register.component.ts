@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss',
 })
-export class LoginComponent {
-  @Input() loginForm!: FormGroup;
+export class RegisterComponent {
+  @Input() registerForm!: FormGroup;
 }
