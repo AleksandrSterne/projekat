@@ -1,7 +1,13 @@
 <div class="d-flex justify-content-center w-100">
   <form>
     <app-register [registerForm]="registerForm"></app-register>
-    <button class="btn btn-primary w-100 py-2" type="submit" (click)="submitRegistration($event)">Register</button>
+    <button
+      class="btn btn-primary w-100 py-2"
+      type="submit"
+      (click)="submitRegistration($event)"
+    >
+      Register
+    </button>
     <a routerLink="/login">Already have an account?</a>
   </form>
 </div>
