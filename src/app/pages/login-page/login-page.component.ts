@@ -17,7 +17,9 @@ export class LoginPageComponent {
 
   constructor(private _loginService: LoginService) {}
 
-  submitLogin() {
+  submitLogin(event: Event) {
+    event.preventDefault();
+
     this.loginForm.markAllAsTouched();
 
     if (this.loginForm.invalid) return;

@@ -21,7 +21,6 @@ export class RegisterPageComponent {
   ) {}
 
   submitRegistration(event: Event) {
-    event.stopImmediatePropagation();
     event.preventDefault();
 
     this.registerForm.markAllAsTouched();
