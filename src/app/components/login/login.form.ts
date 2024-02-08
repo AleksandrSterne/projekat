@@ -9,6 +9,14 @@ import {
 
 @Injectable()
 export class LoginFormGroup extends FormGroup {
+  usernameErrorMessage = '';
+  passwordErrorMessage = '';
+
+  errorMessages = {
+    required: 'This field is required.',
+    userNotFound: 'The username is not found.',
+  };
+
   public findUserCB: (username: string) => boolean = (
     username: string
   ): boolean => {
@@ -22,6 +30,7 @@ export class LoginFormGroup extends FormGroup {
     });
 
     const _username = this.get('username');
+    const _password = this.get('password');
 
     if (_username) {
       _username.setValidators([
@@ -36,6 +45,23 @@ export class LoginFormGroup extends FormGroup {
           return null;
         },
       ]);
+
+      _username.valueChanges.subscribe(() => {
+        if (_username.hasError('required'))
+          this.usernameErrorMessage = this.errorMessages['required'];
+        else if (_username.hasError('userNotFound'))
+          this.usernameErrorMessage = this.errorMessages['userNotFound'];
+        else this.usernameErrorMessage = '';
+      });
+    }
+
+    if (_password) {
+      _password.valueChanges.subscribe(() => {
+        console.log(this.passwordErrorMessage);
+        if (_password.hasError('required'))
+          this.passwordErrorMessage = this.errorMessages['required'];
+        else this.passwordErrorMessage = '';
+      });
     }
   }
 }

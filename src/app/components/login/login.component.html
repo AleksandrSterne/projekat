@@ -8,6 +8,11 @@
       formControlName="username"
     />
     <label for="username"> Username </label>
+    @if (usernameErrorMessage) {
+    <div class="text-danger">
+      {{ usernameErrorMessage }}
+    </div>
+    }
   </div>
   <div class="form-floating">
     <input
@@ -18,5 +23,10 @@
       formControlName="password"
     />
     <label for="password"> Password </label>
+    @if (passwordErrorMessage) {
+    <div class="text-danger">
+      {{ passwordErrorMessage }}
+    </div>
+    }
   </div>
 </div>

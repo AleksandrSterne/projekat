@@ -11,4 +11,6 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   @Input() loginForm!: FormGroup;
+  @Input() usernameErrorMessage = '';
+  @Input() passwordErrorMessage = '';
 }

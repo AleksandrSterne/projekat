@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { LoginComponent } from '../../components/login/login.component';
 import { LoginFormGroup } from '../../components/login/login.form';
 import { LoginService } from '../../services/login.service';
@@ -15,20 +19,30 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginPageComponent {
   loginForm: LoginFormGroup = new LoginFormGroup();
+  usernameErrorMessage = '';
+  passwordErrorMessage = '';
 
   constructor(
     private _loginService: LoginService,
-    private _userService: UserService
+    private _userService: UserService,
+    private cdr: ChangeDetectorRef
   ) {
     this.loginForm.findUserCB = (username: string): boolean => {
       return !!this._userService.findUser(username);
     };
+
+    this.loginForm.valueChanges.subscribe(() => {
+      this.usernameErrorMessage = this.loginForm.usernameErrorMessage;
+      this.passwordErrorMessage = this.loginForm.passwordErrorMessage;
+    });
   }
 
   submitLogin(event: Event) {
     event.preventDefault();
 
     this.loginForm.markAllAsTouched();
+
+    this.cdr.detectChanges();
 
     if (this.loginForm.invalid) return;
 
