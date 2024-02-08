@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/User';
+import { User } from './User';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,25 @@ export class UserService {
     return this.mockData.find((user) => user.username === username);
   }
 
-  updateUsers(newUser: User) {
+  register(username: string, password: string): boolean {
+    const newUser: User = {
+      id: this.generateId(),
+      username: username,
+      password: password,
+    };
+
+    this.addNewUser(newUser);
+
+    return true;
+  }
+
+  addNewUser(newUser: User) {
     this.mockData = [...this.mockData, newUser];
+  }
+
+  generateId(): number {
+    const id = Math.floor(Math.random() * 10000);
+
+    return id;
   }
 }

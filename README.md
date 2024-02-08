@@ -59,3 +59,7 @@ Treeshaking
  * username, password, confirm password
  * password i confirm password moraju da se poklapaju
  */
+
+ ukloniti register service, prebaciti sve u user service
+ napraviti custom validator za proveru passworda u sklopu forme
+ svim komponentama dodati on push change detection

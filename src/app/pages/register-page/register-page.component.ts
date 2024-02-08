@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterComponent } from '../../components/register/register.component';
 import { RegisterFormGroup } from '../../components/register/register.form';
-import { RegisterService } from '../../services/register.service';
 import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -15,10 +14,7 @@ import { UserService } from '../../services/user.service';
 export class RegisterPageComponent {
   registerForm = new RegisterFormGroup();
 
-  constructor(
-    private _registerService: RegisterService,
-    private _userService: UserService
-  ) {}
+  constructor(private _userService: UserService) {}
 
   submitRegistration(event: Event) {
     event.preventDefault();
@@ -35,23 +31,12 @@ export class RegisterPageComponent {
       return;
     }
 
-    if (
-      !this._registerService.checkIfPasswordsAreMatching(
-        registerFormValue.password,
-        registerFormValue.confirmPassword
-      )
-    ) {
-      alert("Password doesn't match");
+    console.log(this.registerForm);
 
-      return;
-    }
-
-    const credentials = {
-      username: registerFormValue.username,
-      password: registerFormValue.password,
-    };
-
-    this._registerService.register(credentials);
+    this._userService.register(
+      registerFormValue.username,
+      registerFormValue.password
+    );
 
     alert('Registered sucessfully!');
   }
