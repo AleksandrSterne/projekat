@@ -13,7 +13,7 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
-  registerForm = new RegisterFormGroup();
+  registerForm: RegisterFormGroup = new RegisterFormGroup();
 
   constructor(private _userService: UserService) {
     this.registerForm.findUserCB = (username: string): boolean => {

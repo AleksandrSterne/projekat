@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoginComponent } from '../../components/login/login.component';
-import { FormGroup } from '@angular/forms';
 import { LoginFormGroup } from '../../components/login/login.form';
 import { LoginService } from '../../services/login.service';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,9 +14,16 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
-  loginForm: FormGroup = new LoginFormGroup();
+  loginForm: LoginFormGroup = new LoginFormGroup();
 
-  constructor(private _loginService: LoginService) {}
+  constructor(
+    private _loginService: LoginService,
+    private _userService: UserService
+  ) {
+    this.loginForm.findUserCB = (username: string): boolean => {
+      return !!this._userService.findUser(username);
+    };
+  }
 
   submitLogin(event: Event) {
     event.preventDefault();

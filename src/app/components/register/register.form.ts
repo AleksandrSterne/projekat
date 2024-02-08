@@ -14,8 +14,7 @@ function passwordMatchValidator(
   return (control: AbstractControl): ValidationErrors | null => {
     if (!passwordControl) return null;
 
-    if (control.value !== passwordControl.value)
-      return { match: true };
+    if (control.value !== passwordControl.value) return { match: true };
 
     return null;
   };
