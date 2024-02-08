@@ -35,31 +35,3 @@ Login service
 
 Mock data za login 3 username-a
 Bootstrap SCSS
-
-Rutiranje - router module
-Srediti Bootstrap
-Srediti login page i napraviti login komponentu
-Izdvojiti formu u posebnu komponentu
-
-Dodati IDeve i srediti logiku za login - autorizacija i autentikacija
-
-Kako se builda aplikacija - proveriti koliko je velika aplikacija
-Treeshaking
-
-/**
- * user service
- * ovde se nalazi mock data
- * ima funkciju za dodavanje korisnika
- * ima funkciju za trazenje korisnika po imenu
- */
-
-
-/**
- * register component
- * username, password, confirm password
- * password i confirm password moraju da se poklapaju
- */
-
- ukloniti register service, prebaciti sve u user service
- napraviti custom validator za proveru passworda u sklopu forme
- svim komponentama dodati on push change detection
