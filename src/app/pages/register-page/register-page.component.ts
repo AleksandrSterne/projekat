@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RegisterComponent } from '../../components/register/register.component';
 import { RegisterFormGroup } from '../../components/register/register.form';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,7 @@ import { UserService } from '../../services/user.service';
   imports: [RegisterComponent, RouterModule],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
   registerForm = new RegisterFormGroup();
@@ -21,21 +22,25 @@ export class RegisterPageComponent {
 
     this.registerForm.markAllAsTouched();
 
-    if (this.registerForm.invalid) return;
+    const registerForm = this.registerForm;
 
-    const registerFormValue = this.registerForm.value;
+    if (this.registerForm.invalid) {
+      if (this._userService.findUser(registerForm.value.username)) {
+        alert('The username already exists.');
+  
+        return;
+      }
 
-    if (this._userService.findUser(registerFormValue.username)) {
-      alert('The username already exists.');
+      if (registerForm.controls['confirmPassword'].invalid) {
+        alert('Passwords do not match.');
 
-      return;
+        return;
+      }
     }
 
-    console.log(this.registerForm);
-
     this._userService.register(
-      registerFormValue.username,
-      registerFormValue.password
+      registerForm.value.username,
+      registerForm.value.password
     );
 
     alert('Registered sucessfully!');

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoginComponent } from '../../components/login/login.component';
 import { FormGroup } from '@angular/forms';
 import { LoginFormGroup } from '../../components/login/login.form';
@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
   imports: [LoginComponent, RouterModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
   loginForm: FormGroup = new LoginFormGroup();
