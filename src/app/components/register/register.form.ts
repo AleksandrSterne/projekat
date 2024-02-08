@@ -22,6 +22,16 @@ function passwordMatchValidator(
 
 @Injectable()
 export class RegisterFormGroup extends FormGroup {
+  errorMessages = {
+    required: 'This field is required.',
+    userFound: 'The username is already taken.',
+    match: 'The passwords do not match.',
+  };
+
+  usernameErrorMessage = this.errorMessages['required'];
+  passwordErrorMessage = this.errorMessages['required'];
+  confirmPasswordErrorMessage = this.errorMessages['required'];
+
   public findUserCB: (username: string) => boolean = (
     username: string
   ): boolean => {
@@ -39,17 +49,6 @@ export class RegisterFormGroup extends FormGroup {
     const _password = this.get('password');
     const _confirmPassword = this.get('confirmPassword');
 
-    if (_password && _confirmPassword) {
-      _password.valueChanges.subscribe(() => {
-        _confirmPassword.updateValueAndValidity();
-      });
-
-      _confirmPassword.setValidators([
-        Validators.required,
-        passwordMatchValidator(_password),
-      ]);
-    }
-
     if (_username) {
       _username.setValidators([
         Validators.required,
@@ -63,6 +62,40 @@ export class RegisterFormGroup extends FormGroup {
           return null;
         },
       ]);
+
+      _username.valueChanges.subscribe(() => {
+        if (_username.hasError('required'))
+          this.usernameErrorMessage = this.errorMessages['required'];
+        else if (_username.hasError('userFound'))
+          this.usernameErrorMessage = this.errorMessages['userFound'];
+        else this.usernameErrorMessage = '';
+      });
+    }
+
+    if (_password) {
+      _password.valueChanges.subscribe(() => {
+        _password.valueChanges.subscribe(() => {
+          if (_password.hasError('required'))
+            this.passwordErrorMessage = this.errorMessages['required'];
+          else this.passwordErrorMessage = '';
+        });
+      });
+    }
+
+    if (_confirmPassword) {
+      if (_password) {
+        _confirmPassword.setValidators([
+          Validators.required,
+          passwordMatchValidator(_password),
+        ]);
+      }
+      _confirmPassword.valueChanges.subscribe(() => {
+        if (_confirmPassword.hasError('required'))
+          this.confirmPasswordErrorMessage = this.errorMessages['required'];
+        else if (_confirmPassword.hasError('match'))
+          this.confirmPasswordErrorMessage = this.errorMessages['match'];
+        else this.confirmPasswordErrorMessage = '';
+      });
     }
   }
 }

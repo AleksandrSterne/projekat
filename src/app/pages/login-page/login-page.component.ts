@@ -32,9 +32,13 @@ export class LoginPageComponent {
     };
 
     this.loginForm.valueChanges.subscribe(() => {
-      this.usernameErrorMessage = this.loginForm.usernameErrorMessage;
-      this.passwordErrorMessage = this.loginForm.passwordErrorMessage;
+      this.setErrorMessages();
     });
+  }
+
+  setErrorMessages() {
+    this.usernameErrorMessage = this.loginForm.usernameErrorMessage;
+    this.passwordErrorMessage = this.loginForm.passwordErrorMessage;
   }
 
   submitLogin(event: Event) {
@@ -42,15 +46,14 @@ export class LoginPageComponent {
 
     this.loginForm.markAllAsTouched();
 
+    this.setErrorMessages();
+
     this.cdr.detectChanges();
 
     if (this.loginForm.invalid) return;
 
-    if (!this._loginService.withCredentials(this.loginForm.value)) {
-      alert('Wrong credentials.');
-
-      return;
-    }
+    if (!this._loginService.withCredentials(this.loginForm.value))
+      return alert('Wrong credentials.');
 
     alert('Sucessfull login!');
   }
