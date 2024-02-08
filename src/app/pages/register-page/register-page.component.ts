@@ -24,6 +24,9 @@ export class RegisterPageComponent {
 
     const registerForm = this.registerForm;
 
+    this.registerForm.controls['password'].updateValueAndValidity();
+    this.registerForm.controls['confirmPassword'].updateValueAndValidity();
+
     if (this.registerForm.invalid) {
       if (this._userService.findUser(registerForm.value.username)) {
         alert('The username already exists.');
