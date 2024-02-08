@@ -15,7 +15,11 @@ import { UserService } from '../../services/user.service';
 export class RegisterPageComponent {
   registerForm = new RegisterFormGroup();
 
-  constructor(private _userService: UserService) {}
+  constructor(private _userService: UserService) {
+    this.registerForm.findUserCB = (username: string): boolean => {
+      return !!this._userService.findUser(username);
+    };
+  }
 
   submitRegistration(event: Event) {
     event.preventDefault();
@@ -24,22 +28,7 @@ export class RegisterPageComponent {
 
     const registerForm = this.registerForm;
 
-    this.registerForm.controls['password'].updateValueAndValidity();
-    this.registerForm.controls['confirmPassword'].updateValueAndValidity();
-
-    if (this.registerForm.invalid) {
-      if (this._userService.findUser(registerForm.value.username)) {
-        alert('The username already exists.');
-  
-        return;
-      }
-
-      if (registerForm.controls['confirmPassword'].invalid) {
-        alert('Passwords do not match.');
-
-        return;
-      }
-    }
+    if (this.registerForm.invalid) return;
 
     this._userService.register(
       registerForm.value.username,

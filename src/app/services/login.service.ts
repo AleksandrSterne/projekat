@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginCredentials, User } from './User';
+import { LoginCredentials, User } from './user.model';
 import { UserService } from './user.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
