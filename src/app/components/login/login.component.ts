@@ -1,5 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginFormGroup } from './login.form';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +16,14 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
-  @Input() loginForm!: FormGroup;
-  @Input() usernameErrorMessage = '';
-  @Input() passwordErrorMessage = '';
+export class LoginComponent implements OnInit {
+  @Input() formRef!: LoginFormGroup;
+
+  constructor(public cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    if (this.formRef) {
+      this.formRef.cdr = this.cdr;
+    }
+  }
 }

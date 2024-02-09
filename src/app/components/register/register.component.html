@@ -1,41 +1,67 @@
-<div class="form-signing w-30 m-auto" [formGroup]="registerForm">
-  <div class="form-floating">
-    <input
-      type="text"
-      class="form-control"
-      id="username"
-      placeholder="Username"
-      formControlName="username"
-    />
-    <label for="username"> Username </label>
-    @if (usernameErrorMessage) {
-    <div class="text-danger">{{ usernameErrorMessage }}</div>
+<div class="form-signing w-30 m-auto" [formGroup]="formRef">
+  <div>
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Username"
+        formControlName="username"
+      />
+      <label for="username"> Username </label>
+    </div>
+    @if (formRef.usernameCtrl.invalid && (formRef.usernameCtrl.touched ||
+    formRef.usernameCtrl.dirty)) {
+    <div class="errors">
+      @if (formRef.usernameCtrl.hasError('required')) {
+      <div>This field is required</div>
+      } @if (formRef.usernameCtrl.hasError('userFound')) {
+      <div>Username already exists</div>
+      }
+    </div>
     }
   </div>
-  <div class="form-floating">
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      placeholder="Password"
-      formControlName="password"
-    />
-    <label for="password"> Password </label>
-    @if (passwordErrorMessage) {
-    <div class="text-danger">{{ passwordErrorMessage }}</div>
+  <div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <label for="password"> Password </label>
+    </div>
+    @if (formRef.passwordCtrl.invalid && (formRef.passwordCtrl.touched ||
+    formRef.passwordCtrl.dirty)) {
+    <div class="errors">
+      @if (formRef.passwordCtrl.hasError('required')) {
+      <div>This field is required</div>
+      }
+    </div>
     }
   </div>
-  <div class="form-floating">
-    <input
-      type="password"
-      class="form-control"
-      id="confirmPassword"
-      placeholder="Confirm password"
-      formControlName="confirmPassword"
-    />
-    <label for="confirmPassword"> Confirm password </label>
-    @if (confirmPasswordErrorMessage) {
-    <div class="text-danger">{{ confirmPasswordErrorMessage }}</div>
+  <div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+        placeholder="Confirm password"
+        formControlName="confirmPassword"
+      />
+      <label for="confirmPassword"> Confirm password </label>
+    </div>
+    @if (formRef.confirmPasswordCtrl.invalid &&
+    (formRef.confirmPasswordCtrl.touched || formRef.confirmPasswordCtrl.dirty))
+    {
+    <div class="errors">
+      @if (formRef.confirmPasswordCtrl.hasError('required')) {
+      <div>This field is required</div>
+      } @if (formRef.confirmPasswordCtrl.hasError('match')) {
+      <div>Passwords do not match</div>
+      }
+    </div>
     }
   </div>
 </div>

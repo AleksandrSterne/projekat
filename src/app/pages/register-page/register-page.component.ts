@@ -17,47 +17,33 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent {
-  registerForm: RegisterFormGroup = new RegisterFormGroup();
-  usernameErrorMessage = '';
-  passwordErrorMessage = '';
-  confirmPasswordErrorMessage = '';
+  formRef: RegisterFormGroup = new RegisterFormGroup();
 
   constructor(
     private _userService: UserService,
     private cdr: ChangeDetectorRef
   ) {
-    this.registerForm.findUserCB = (username: string): boolean => {
+    this.formRef.findUserCB = (username: string): boolean => {
       return !!this._userService.findUser(username);
     };
-
-    this.registerForm.valueChanges.subscribe(() => {
-      this.setErrorMessages();
-    });
-  }
-
-  setErrorMessages() {
-    this.usernameErrorMessage = this.registerForm.usernameErrorMessage;
-    this.passwordErrorMessage = this.registerForm.passwordErrorMessage;
-    this.confirmPasswordErrorMessage =
-      this.registerForm.confirmPasswordErrorMessage;
   }
 
   submitRegistration(event: Event) {
     event.preventDefault();
 
-    this.registerForm.markAllAsTouched();
-
-    const registerForm = this.registerForm;
-
-    this.setErrorMessages();
+    this.formRef.markAllAsTouched();
 
     this.cdr.detectChanges();
 
-    if (this.registerForm.invalid) return;
+    if (this.formRef.cdr) {
+      this.formRef.cdr.detectChanges();
+    }
+
+    if (this.formRef.invalid) return;
 
     this._userService.register(
-      registerForm.value.username,
-      registerForm.value.password
+      this.formRef.value.username,
+      this.formRef.value.password
     );
 
     alert('Registered sucessfully!');

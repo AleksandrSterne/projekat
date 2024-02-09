@@ -7,7 +7,6 @@ import { LoginComponent } from '../../components/login/login.component';
 import { LoginFormGroup } from '../../components/login/login.form';
 import { LoginService } from '../../services/login.service';
 import { RouterModule } from '@angular/router';
-import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -18,41 +17,27 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
-  loginForm: LoginFormGroup = new LoginFormGroup();
-  usernameErrorMessage = '';
-  passwordErrorMessage = '';
+  formRef: LoginFormGroup = new LoginFormGroup();
 
   constructor(
     private _loginService: LoginService,
-    private _userService: UserService,
     private cdr: ChangeDetectorRef
-  ) {
-    this.loginForm.findUserCB = (username: string): boolean => {
-      return !!this._userService.findUser(username);
-    };
-
-    this.loginForm.valueChanges.subscribe(() => {
-      this.setErrorMessages();
-    });
-  }
-
-  setErrorMessages() {
-    this.usernameErrorMessage = this.loginForm.usernameErrorMessage;
-    this.passwordErrorMessage = this.loginForm.passwordErrorMessage;
-  }
+  ) {}
 
   submitLogin(event: Event) {
     event.preventDefault();
 
-    this.loginForm.markAllAsTouched();
-
-    this.setErrorMessages();
+    this.formRef.markAllAsTouched();
 
     this.cdr.detectChanges();
 
-    if (this.loginForm.invalid) return;
+    if (this.formRef.cdr) {
+      this.formRef.cdr.detectChanges();
+    }
 
-    if (!this._loginService.withCredentials(this.loginForm.value))
+    if (this.formRef.invalid) return;
+
+    if (!this._loginService.withCredentials(this.formRef.value))
       return alert('Wrong credentials.');
 
     alert('Sucessfull login!');

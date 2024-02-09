@@ -1,11 +1,6 @@
 <div class="d-flex justify-content-center w-100">
   <form>
-    <app-register
-      [registerForm]="registerForm"
-      [usernameErrorMessage]="usernameErrorMessage"
-      [passwordErrorMessage]="passwordErrorMessage"
-      [confirmPasswordErrorMessage]="confirmPasswordErrorMessage"
-    ></app-register>
+    <app-register [formRef]="formRef"></app-register>
     <button
       class="btn btn-primary w-100 py-2"
       type="submit"

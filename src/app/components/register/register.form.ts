@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -14,29 +14,33 @@ function passwordMatchValidator(
   return (control: AbstractControl): ValidationErrors | null => {
     if (!passwordControl) return null;
 
+    if (!control.value) return null;
+
     if (control.value !== passwordControl.value) return { match: true };
 
     return null;
   };
 }
 
-@Injectable()
 export class RegisterFormGroup extends FormGroup {
-  errorMessages = {
-    required: 'This field is required.',
-    userFound: 'The username is already taken.',
-    match: 'The passwords do not match.',
-  };
-
-  usernameErrorMessage = this.errorMessages['required'];
-  passwordErrorMessage = this.errorMessages['required'];
-  confirmPasswordErrorMessage = this.errorMessages['required'];
-
+  public cdr: ChangeDetectorRef | null = null;
   public findUserCB: (username: string) => boolean = (
     username: string
   ): boolean => {
     return false;
   };
+
+  public get usernameCtrl(): FormControl {
+    return this.get('username') as any;
+  }
+
+  public get passwordCtrl(): FormControl {
+    return this.get('password') as any;
+  }
+
+  public get confirmPasswordCtrl(): FormControl {
+    return this.get('confirmPassword') as any;
+  }
 
   constructor() {
     super({
@@ -62,39 +66,20 @@ export class RegisterFormGroup extends FormGroup {
           return null;
         },
       ]);
-
-      _username.valueChanges.subscribe(() => {
-        if (_username.hasError('required'))
-          this.usernameErrorMessage = this.errorMessages['required'];
-        else if (_username.hasError('userFound'))
-          this.usernameErrorMessage = this.errorMessages['userFound'];
-        else this.usernameErrorMessage = '';
-      });
     }
 
-    if (_password) {
+    if (_password && _confirmPassword) {
+      _confirmPassword.setValidators([
+        Validators.required,
+        passwordMatchValidator(_password),
+      ]);
+
       _password.valueChanges.subscribe(() => {
-        _password.valueChanges.subscribe(() => {
-          if (_password.hasError('required'))
-            this.passwordErrorMessage = this.errorMessages['required'];
-          else this.passwordErrorMessage = '';
-        });
-      });
-    }
+        _confirmPassword.updateValueAndValidity();
 
-    if (_confirmPassword) {
-      if (_password) {
-        _confirmPassword.setValidators([
-          Validators.required,
-          passwordMatchValidator(_password),
-        ]);
-      }
-      _confirmPassword.valueChanges.subscribe(() => {
-        if (_confirmPassword.hasError('required'))
-          this.confirmPasswordErrorMessage = this.errorMessages['required'];
-        else if (_confirmPassword.hasError('match'))
-          this.confirmPasswordErrorMessage = this.errorMessages['match'];
-        else this.confirmPasswordErrorMessage = '';
+        if (this.cdr) {
+          this.cdr.markForCheck();
+        }
       });
     }
   }

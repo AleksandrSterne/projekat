@@ -1,5 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterFormGroup } from './register.form';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +16,14 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './register.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent {
-  @Input() registerForm!: FormGroup;
-  @Input() usernameErrorMessage = '';
-  @Input() passwordErrorMessage = '';
-  @Input() confirmPasswordErrorMessage = '';
+export class RegisterComponent implements OnInit {
+  @Input() formRef!: RegisterFormGroup;
 
+  constructor(public cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    if (this.formRef) {
+      this.formRef.cdr = this.cdr;
+    }
+  }
 }
