@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginCredentials, User } from './user.model';
 import { UserService } from './user.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class LoginService {
   );
   currentUser$: Observable<User | null> = this._currentUser.asObservable();
 
-  constructor(private _userService: UserService) {}
+  constructor(private _userService: UserService, private router: Router) {}
 
   withCredentials(credentials: LoginCredentials): boolean {
     const foundUser = this._userService.findUser(credentials.username);
@@ -23,6 +24,30 @@ export class LoginService {
 
     this._currentUser.next(foundUser);
 
+    localStorage.setItem('token', foundUser.id.toString());
+
+    this.router.navigateByUrl('/account');
+
     return true;
+  }
+
+  authenticate(): boolean {
+    const token = localStorage.getItem('token');
+
+    if (!token) return false;
+
+    if (!this._currentUser.value) return false;
+
+    if (this._currentUser.value.id !== +token) return false;
+
+    return true;
+  }
+
+  logout() {
+    this._currentUser.next(null);
+
+    localStorage.removeItem('token');
+
+    this.router.navigateByUrl('/login');
   }
 }

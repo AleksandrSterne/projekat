@@ -1,1 +1,8 @@
-<p>account-page works!</p>
+<div class="d-flex justify-content-center w-100">
+  <div class="w-25">
+    <app-account-info [currentUser$]="currentUser$"></app-account-info>
+    <button class="btn btn-primary w-100 py-2" type="submit" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</div>
