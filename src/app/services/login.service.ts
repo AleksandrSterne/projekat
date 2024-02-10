@@ -13,7 +13,7 @@ export class LoginService {
   );
   currentUser$: Observable<User | null> = this._currentUser.asObservable();
 
-  constructor(private _userService: UserService, private router: Router) {}
+  constructor(private _userService: UserService, private _router: Router) {}
 
   withCredentials(credentials: LoginCredentials): boolean {
     const foundUser = this._userService.findUser(credentials.username);
@@ -26,9 +26,13 @@ export class LoginService {
 
     localStorage.setItem('token', foundUser.id.toString());
 
-    this.router.navigateByUrl('/account');
+    this._router.navigateByUrl('/account');
 
     return true;
+  }
+
+  setCurrentUser(user: User) {
+    this._currentUser.next(user);
   }
 
   authenticate(): boolean {
@@ -48,6 +52,6 @@ export class LoginService {
 
     localStorage.removeItem('token');
 
-    this.router.navigateByUrl('/login');
+    this._router.navigateByUrl('/login');
   }
 }

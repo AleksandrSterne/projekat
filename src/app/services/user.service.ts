@@ -27,6 +27,10 @@ export class UserService {
     return this.mockData.find((user) => user.username === username);
   }
 
+  findUserById(id: number): User | undefined {
+    return this.mockData.find((user) => user.id === id);
+  }
+
   register(username: string, password: string): boolean {
     if (this.findUser(username)) {
       return false;

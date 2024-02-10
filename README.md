@@ -25,13 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-account page, account info component - prikazati podatke o useru na stranici
-
-guard - can access - korisnik nije ulogovan vratiti ga na login/register u zavisnosti od toga gde je bio, korisnik je ulogovan zabraniti pristup login/register stranicama
-
-PREGLEDATI ANGULAR DOKUMENTACIJU
-
-u constructor-u proveriti da li je user ulogovan, cuvati id u localstorage kao token (resiti to u login servisu), dodati logout
-
-NE MENJATI POSTOJECI KOD
