@@ -1,19 +1,24 @@
 @if (formRef) {
-<div class="form-signing w-30 m-auto" [formGroup]="formRef">
+<div
+  class="form-signing w-30 m-auto"
+  data-testid="form-group"
+  [formGroup]="formRef"
+>
   <div>
-    <div class="form-floating">
+    <div class="form-floating" data-testid="username">
       <input
         type="text"
         class="form-control"
+        data-testid="username-input"
         id="username"
         placeholder="Username"
         formControlName="username"
       />
-      <label for="username"> Username </label>
+      <label for="username" data-testid="username-label"> Username </label>
     </div>
     @if (formRef.usernameCtrl.invalid && (formRef.usernameCtrl.touched ||
     formRef.usernameCtrl.dirty)) {
-    <div class="errors">
+    <div class="errors" data-testid="username-errors">
       @if (formRef.usernameCtrl.hasError('required')) {
       <div>This field is required</div>
       }
@@ -21,19 +26,20 @@
     }
   </div>
   <div>
-    <div class="form-floating">
+    <div class="form-floating" data-testid="password">
       <input
         type="password"
         class="form-control"
+        data-testid="password-input"
         id="password"
         placeholder="Password"
         formControlName="password"
       />
-      <label for="password"> Password </label>
+      <label for="password" data-testid="password-label"> Password </label>
     </div>
     @if (formRef.passwordCtrl.invalid && (formRef.passwordCtrl.touched ||
     formRef.passwordCtrl.dirty)) {
-    <div class="errors">
+    <div class="errors" data-testid="password-errors">
       @if (formRef.passwordCtrl.hasError('required')) {
       <div>This field is required</div>
       }
