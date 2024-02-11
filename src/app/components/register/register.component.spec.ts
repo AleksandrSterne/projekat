@@ -58,7 +58,7 @@ describe('RegisterComponent', () => {
 
   it('should not render username errors', () => {
     const usernameErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="username-error"]')
+      By.css('[data-testid="username-errors"]')
     );
 
     expect(usernameErrorContainer).toBeFalsy();
@@ -72,7 +72,7 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
 
     const usernameErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="username-error"]')
+      By.css('[data-testid="username-errors"]')
     );
 
     expect(usernameErrorContainer).toBeTruthy();
@@ -106,7 +106,7 @@ describe('RegisterComponent', () => {
 
   it('should not render password errors', () => {
     const passwordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="password-error"]')
+      By.css('[data-testid="password-errors"]')
     );
 
     expect(passwordErrorContainer).toBeFalsy();
@@ -120,7 +120,7 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
 
     const passwordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="password-error"]')
+      By.css('[data-testid="password-errors"]')
     );
 
     expect(passwordErrorContainer).toBeTruthy();
@@ -154,7 +154,7 @@ describe('RegisterComponent', () => {
 
   it('should not render confirm password errors', () => {
     const confirmPasswordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-error"]')
+      By.css('[data-testid="confirm-password-errors"]')
     );
 
     expect(confirmPasswordErrorContainer).toBeFalsy();
@@ -169,7 +169,7 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
 
     const confirmPasswordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-error"]')
+      By.css('[data-testid="confirm-password-errors"]')
     );
 
     expect(confirmPasswordErrorContainer).toBeTruthy();

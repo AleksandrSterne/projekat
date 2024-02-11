@@ -73,7 +73,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
 
     const usernameErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="username-error"]')
+      By.css('[data-testid="username-errors"]')
     );
 
     expect(usernameErrorContainer).toBeTruthy();
@@ -107,7 +107,7 @@ describe('LoginComponent', () => {
 
   it('should not render password errors', () => {
     const passwordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="password-error"]')
+      By.css('[data-testid="password-errors"]')
     );
 
     expect(passwordErrorContainer).toBeFalsy();
