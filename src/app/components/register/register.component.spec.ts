@@ -34,7 +34,7 @@ describe('RegisterComponent', () => {
 
   it('should render username form control container', () => {
     const usernameContainer = fixture.debugElement.query(
-      By.css('[data-testid="username"]')
+      By.css('.form-control-username')
     );
 
     expect(usernameContainer).toBeTruthy();

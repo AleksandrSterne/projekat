@@ -20,7 +20,7 @@ describe('AccountInfoComponent', () => {
 
     fixture = TestBed.createComponent(AccountInfoComponent);
     component = fixture.componentInstance;
-    component.currentUser$ = mockUser$.asObservable();
+    // component.data = mockUser$.asObservable();
     fixture.detectChanges();
   });
 

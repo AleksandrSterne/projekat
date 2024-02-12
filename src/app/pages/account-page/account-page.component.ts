@@ -3,11 +3,12 @@ import { AccountInfoComponent } from '../../components/account-info/account-info
 import { LoginService } from '../../services/login.service';
 import { Observable } from 'rxjs';
 import { User } from '../../services/user.model';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-page',
   standalone: true,
-  imports: [AccountInfoComponent],
+  imports: [AccountInfoComponent, AsyncPipe],
   templateUrl: './account-page.component.html',
   styleUrl: './account-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

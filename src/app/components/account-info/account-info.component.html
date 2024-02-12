@@ -1,15 +1,15 @@
-@if (currentUser$ | async; as user) {
-<div class="col" data-testid="account-info">
-  <div class="card mb-4 rounded-3 shadow-sm">
-    <div class="card-header py-3">
-      <h4 class="my-0 fw-normal" data-testid="account-info-header">
+@if (data) {
+<div class="col __account-info">
+  <div class="card mb-4 rounded-3 shadow-sm __account-info-header-container">
+    <div class="card-header py-3 __account-info-header">
+      <h4 class="my-0 fw-normal __account-info-header-text">
         User info
       </h4>
     </div>
-    <div class="card-body" data-testid="account-info-body">
-      <div data-testid="account-id">Id: {{ user.id }}</div>
-      <div data-testid="account-username">Username: {{ user.username }}</div>
-      <div data-testid="account-password">Password: {{ user.password }}</div>
+    <div class="card-body __account-info-body">
+      <div class="__id">Id: {{ data.id }}</div>
+      <div class="__username">Username: {{ data.username }}</div>
+      <div class="__password">Password: {{ data.password }}</div>
     </div>
   </div>
 </div>

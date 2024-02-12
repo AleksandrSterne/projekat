@@ -5,13 +5,13 @@ import {
 } from '@angular/core';
 import { RegisterComponent } from '../../components/register/register.component';
 import { RegisterFormGroup } from '../../components/register/register.form';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-register-page',
   standalone: true,
-  imports: [RegisterComponent, RouterModule],
+  imports: [RegisterComponent, RouterLink],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
