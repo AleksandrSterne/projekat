@@ -1,47 +1,41 @@
 @if (formRef) {
-<div
-  class="form-signing w-30 m-auto"
-  data-testid="form-group"
-  [formGroup]="formRef"
->
-  <div>
-    <div class="form-floating" data-testid="username">
+<div class="form-signing w-30 m-auto __form-group" [formGroup]="formRef">
+  <div class="__username-fc-container">
+    <div class="form-floating __username-fc">
       <input
         type="text"
-        class="form-control"
-        data-testid="username-input"
+        class="form-control __username-input"
         id="username"
         placeholder="Username"
         formControlName="username"
       />
-      <label for="username" data-testid="username-label"> Username </label>
+      <label class="__username-label" for="username"> Username </label>
     </div>
     @if (formRef.usernameCtrl.invalid && (formRef.usernameCtrl.touched ||
     formRef.usernameCtrl.dirty)) {
-    <div class="errors" data-testid="username-errors">
+    <div class="errors __username-errors">
       @if (formRef.usernameCtrl.hasError('required')) {
-      <div>This field is required</div>
+      <div class="__username-error-required">This field is required</div>
       }
     </div>
     }
   </div>
-  <div>
-    <div class="form-floating" data-testid="password">
+  <div class="__password-fc-container">
+    <div class="form-floating __password-fc">
       <input
         type="password"
-        class="form-control"
-        data-testid="password-input"
+        class="form-control __password-input"
         id="password"
         placeholder="Password"
         formControlName="password"
       />
-      <label for="password" data-testid="password-label"> Password </label>
+      <label class="__password-label" for="password"> Password </label>
     </div>
     @if (formRef.passwordCtrl.invalid && (formRef.passwordCtrl.touched ||
     formRef.passwordCtrl.dirty)) {
-    <div class="errors" data-testid="password-errors">
+    <div class="errors __password-errors">
       @if (formRef.passwordCtrl.hasError('required')) {
-      <div>This field is required</div>
+      <div class="__password-error-required">This field is required</div>
       }
     </div>
     }

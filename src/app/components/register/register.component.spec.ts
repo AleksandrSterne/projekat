@@ -22,156 +22,188 @@ describe('RegisterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render form group container', () => {
-    const formGroupContainer = fixture.debugElement.query(
-      By.css('[data-testid="form-group"]')
-    );
+  describe('Initial state', () => {
+    it('should render form group container', () => {
+      const formGroupContainer = fixture.debugElement.query(
+        By.css('.__form-group')
+      );
 
-    expect(formGroupContainer).toBeTruthy();
+      expect(formGroupContainer).toBeTruthy();
+    });
+
+    it('should render username form control elements initial state', () => {
+      const usernameContainer = fixture.debugElement.query(
+        By.css('.__username-fc-container')
+      );
+      const usernameFormControl = fixture.debugElement.query(
+        By.css('.__username-fc')
+      );
+      const usernameInput = fixture.debugElement.query(
+        By.css('.__username-input')
+      );
+      const usernameLabel = fixture.debugElement.query(
+        By.css('.__username-label')
+      );
+      const usernameErrors = fixture.debugElement.query(
+        By.css('__username-errors')
+      );
+      const usernameErrorMessage = fixture.debugElement.query(
+        By.css('__username-error-message')
+      );
+
+      expect(usernameContainer).toBeTruthy();
+      expect(usernameFormControl).toBeTruthy();
+      expect(usernameInput).toBeTruthy();
+      expect(usernameLabel).toBeTruthy();
+      expect(usernameErrors).toBeFalsy();
+      expect(usernameErrorMessage).toBeFalsy();
+    });
+
+    it('should render password form control elements initial state', () => {
+      const passwordContainer = fixture.debugElement.query(
+        By.css('.__password-fc-container')
+      );
+      const passwordFormControl = fixture.debugElement.query(
+        By.css('.__password-fc')
+      );
+      const passwordInput = fixture.debugElement.query(
+        By.css('.__password-input')
+      );
+      const passwordLabel = fixture.debugElement.query(
+        By.css('.__password-label')
+      );
+      const passwordErrors = fixture.debugElement.query(
+        By.css('__password-errors')
+      );
+      const passwordErrorMessage = fixture.debugElement.query(
+        By.css('__password-error-message')
+      );
+
+      expect(passwordContainer).toBeTruthy();
+      expect(passwordFormControl).toBeTruthy();
+      expect(passwordInput).toBeTruthy();
+      expect(passwordLabel).toBeTruthy();
+      expect(passwordErrors).toBeFalsy();
+      expect(passwordErrorMessage).toBeFalsy();
+    });
+
+    it('should render confirm password form control elements initial state', () => {
+      const confirmPasswordContainer = fixture.debugElement.query(
+        By.css('.__confirm-password-fc-container')
+      );
+      const confirmPasswordFormControl = fixture.debugElement.query(
+        By.css('.__confirm-password-fc')
+      );
+      const confirmPasswordInput = fixture.debugElement.query(
+        By.css('.__confirm-password-input')
+      );
+      const confirmPasswordLabel = fixture.debugElement.query(
+        By.css('.__confirm-password-label')
+      );
+      const confirmPasswordErrors = fixture.debugElement.query(
+        By.css('__confirm-password-errors')
+      );
+      const confirmPasswordErrorMessage = fixture.debugElement.query(
+        By.css('__confirm-password-error-message')
+      );
+
+      expect(confirmPasswordContainer).toBeTruthy();
+      expect(confirmPasswordFormControl).toBeTruthy();
+      expect(confirmPasswordInput).toBeTruthy();
+      expect(confirmPasswordLabel).toBeTruthy();
+      expect(confirmPasswordErrors).toBeFalsy();
+      expect(confirmPasswordErrorMessage).toBeFalsy();
+    });
   });
 
-  /** Username tests */
+  describe('Error state', () => {
+    it('should render required errors', () => {
+      component.formRef.markAllAsTouched();
 
-  it('should render username form control container', () => {
-    const usernameContainer = fixture.debugElement.query(
-      By.css('.form-control-username')
-    );
+      component.formRef.setErrors({
+        username: { required: true },
+        password: { required: true },
+        confirmPassword: { required: true },
+      });
 
-    expect(usernameContainer).toBeTruthy();
-  });
+      component.formRef.cdr?.detectChanges();
 
-  it('should render username input', () => {
-    const usernameInput = fixture.debugElement.query(
-      By.css('[data-testid="username-input"]')
-    );
+      const usernameErrors = fixture.debugElement.query(
+        By.css('.__username-errors')
+      );
+      const usernameErrorMessage = fixture.debugElement.query(
+        By.css('.__username-error-required')
+      );
+      const passwordErrors = fixture.debugElement.query(
+        By.css('.__password-errors')
+      );
+      const passwordErrorMessage = fixture.debugElement.query(
+        By.css('.__password-error-required')
+      );
+      const confirmPasswordErrors = fixture.debugElement.query(
+        By.css('.__confirm-password-errors')
+      );
+      const confirmPasswordErrorMessage = fixture.debugElement.query(
+        By.css('.__confirm-password-error-required')
+      );
 
-    expect(usernameInput).toBeTruthy();
-  });
+      expect(usernameErrors).toBeTruthy();
+      expect(usernameErrorMessage).toBeTruthy();
+      expect(usernameErrorMessage.nativeElement.textContent).toContain(
+        'This field is required'
+      );
+      expect(passwordErrors).toBeTruthy();
+      expect(passwordErrorMessage).toBeTruthy();
+      expect(passwordErrorMessage.nativeElement.textContent).toContain(
+        'This field is required'
+      );
+      expect(confirmPasswordErrors).toBeTruthy();
+      expect(confirmPasswordErrorMessage).toBeTruthy();
+      expect(confirmPasswordErrorMessage.nativeElement.textContent).toContain(
+        'This field is required'
+      );
+    });
 
-  it('should render username label', () => {
-    const usernameLabel = fixture.debugElement.query(
-      By.css('[data-testid="username-label"]')
-    );
+    it('should render userFound username error', () => {
+      component.formRef.markAllAsTouched();
 
-    expect(usernameLabel).toBeTruthy();
-  });
+      component.formRef.get('username')?.setErrors({ userFound: true });
 
-  it('should not render username errors', () => {
-    const usernameErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="username-errors"]')
-    );
+      component.formRef.cdr?.detectChanges();
 
-    expect(usernameErrorContainer).toBeFalsy();
-  });
+      const usernameErrors = fixture.debugElement.query(
+        By.css('.__username-errors')
+      );
+      const usernameErrorMessage = fixture.debugElement.query(
+        By.css('.__username-error-user-found')
+      );
 
-  it('should render username errors', () => {
-    const usernameFormControl = component.formRef.get('username');
+      expect(usernameErrors).toBeTruthy();
+      expect(usernameErrorMessage).toBeTruthy();
+      expect(usernameErrorMessage.nativeElement.textContent).toContain(
+        'Username already exists'
+      );
+    });
 
-    usernameFormControl?.setErrors({ required: true });
+    it('should render match password error', () => {
+      component.formRef.markAllAsTouched();
 
-    fixture.detectChanges();
+      component.formRef.get('confirmPassword')?.setErrors({ match: true });
 
-    const usernameErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="username-errors"]')
-    );
+      component.formRef.cdr?.detectChanges();
 
-    expect(usernameErrorContainer).toBeTruthy();
-  });
+      const confirmPasswordErrors = fixture.debugElement.query(
+        By.css('.__confirm-password-errors')
+      );
+      const confirmPasswordErrorMessage = fixture.debugElement.query(
+        By.css('.__confirm-password-error-match')
+      );
 
-  /** Password tests */
-
-  it('should render password form control container', () => {
-    const passwordContainer = fixture.debugElement.query(
-      By.css('[data-testid="password"]')
-    );
-
-    expect(passwordContainer).toBeTruthy();
-  });
-
-  it('should render password input', () => {
-    const passwordInput = fixture.debugElement.query(
-      By.css('[data-testid="password-input"]')
-    );
-
-    expect(passwordInput).toBeTruthy();
-  });
-
-  it('should render password label', () => {
-    const passwordLabel = fixture.debugElement.query(
-      By.css('[data-testid="password-label"]')
-    );
-
-    expect(passwordLabel).toBeTruthy();
-  });
-
-  it('should not render password errors', () => {
-    const passwordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="password-errors"]')
-    );
-
-    expect(passwordErrorContainer).toBeFalsy();
-  });
-
-  it('should render password errors', () => {
-    const passwordFormControl = component.formRef.get('password');
-
-    passwordFormControl?.setErrors({ required: true });
-
-    fixture.detectChanges();
-
-    const passwordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="password-errors"]')
-    );
-
-    expect(passwordErrorContainer).toBeTruthy();
-  });
-
-  /** Confirm password tests */
-
-  it('should render confirm password form control container', () => {
-    const confirmPasswordContainer = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password"]')
-    );
-
-    expect(confirmPasswordContainer).toBeTruthy();
-  });
-
-  it('should render confirm password input', () => {
-    const confirmPasswordInput = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-input"]')
-    );
-
-    expect(confirmPasswordInput).toBeTruthy();
-  });
-
-  it('should render confirm password label', () => {
-    const confirmPasswordLabel = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-label"]')
-    );
-
-    expect(confirmPasswordLabel).toBeTruthy();
-  });
-
-  it('should not render confirm password errors', () => {
-    const confirmPasswordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-errors"]')
-    );
-
-    expect(confirmPasswordErrorContainer).toBeFalsy();
-  });
-
-  it('should render confirm password errors', () => {
-    const confirmPasswordFormControl =
-      component.formRef.get('confirm-password');
-
-    confirmPasswordFormControl?.setErrors({ required: true });
-
-    fixture.detectChanges();
-
-    const confirmPasswordErrorContainer = fixture.debugElement.query(
-      By.css('[data-testid="confirm-password-errors"]')
-    );
-
-    expect(confirmPasswordErrorContainer).toBeTruthy();
+      expect(confirmPasswordErrors).toBeTruthy();
+      expect(confirmPasswordErrorMessage).toBeTruthy();
+      expect(confirmPasswordErrorMessage.nativeElement.textContent).toContain(
+        'Passwords do not match'
+      );
+    });
   });
 });

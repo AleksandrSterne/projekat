@@ -81,4 +81,25 @@ describe('RegisterFormGroup', () => {
     expect(_form.get('username')?.valid).toBeTrue();
     expect(_form.get('username')?.hasError('userFound')).toBeFalse();
   });
+
+  it('should have errors after user input', () => {
+    const _form = new RegisterFormGroup();
+
+    _form.patchValue({
+      username: 'Pera',
+      password: '123',
+      confirmPassword: '123',
+    });
+
+    _form.patchValue({
+      username: '',
+      password: '',
+      confirmPassword: '',
+    });
+
+    expect(_form.invalid).toBeTrue();
+    expect(_form.get('username')?.invalid).toBeTrue();
+    expect(_form.get('password')?.invalid).toBeTrue();
+    expect(_form.get('confirmPassword')?.invalid).toBeTrue();
+  });
 });

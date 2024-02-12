@@ -1,10 +1,7 @@
 @if (formRef) {
-<div
-  class="form-signing w-30 m-auto __form-group"
-  [formGroup]="formRef"
->
-  <div class="form-control-username">
-    <div class="form-floating __username-container">
+<div class="form-signing w-30 m-auto __form-group" [formGroup]="formRef">
+  <div class="__username-fc-container">
+    <div class="form-floating __username-fc">
       <input
         type="text"
         class="form-control __username-input"
@@ -12,7 +9,7 @@
         placeholder="Username"
         formControlName="username"
       />
-      <label for="username __username-label"> Username </label>
+      <label class="__username-label" for="username"> Username </label>
     </div>
     @if (formRef.usernameCtrl.invalid && (formRef.usernameCtrl.touched ||
     formRef.usernameCtrl.dirty)) {
@@ -25,8 +22,8 @@
     </div>
     }
   </div>
-  <div class="form-control-password">
-    <div class="form-floating __password-container">
+  <div class="__password-fc-container">
+    <div class="form-floating __password-fc">
       <input
         type="password"
         class="form-control __password-input"
@@ -34,7 +31,7 @@
         placeholder="Password"
         formControlName="password"
       />
-      <label for="password __password-label"> Password </label>
+      <label class="__password-label" for="password"> Password </label>
     </div>
     @if (formRef.passwordCtrl.invalid && (formRef.passwordCtrl.touched ||
     formRef.passwordCtrl.dirty)) {
@@ -45,8 +42,8 @@
     </div>
     }
   </div>
-  <div class="form-control-confirm-password">
-    <div class="form-floating __confirm-password-container">
+  <div class="__confirm-password-fc-container">
+    <div class="form-floating __confirm-password-fc">
       <input
         type="password"
         class="form-control __confirm-password-input"
@@ -54,14 +51,18 @@
         placeholder="Confirm password"
         formControlName="confirmPassword"
       />
-      <label for="confirmPassword __confirm-password-label"> Confirm password </label>
+      <label class="__confirm-password-label" for="confirmPassword">
+        Confirm password
+      </label>
     </div>
     @if (formRef.confirmPasswordCtrl.invalid &&
     (formRef.confirmPasswordCtrl.touched || formRef.confirmPasswordCtrl.dirty))
     {
     <div class="errors __confirm-password-errors">
       @if (formRef.confirmPasswordCtrl.hasError('required')) {
-      <div class="__confirm-password-error-required">This field is required</div>
+      <div class="__confirm-password-error-required">
+        This field is required
+      </div>
       } @if (formRef.confirmPasswordCtrl.hasError('match')) {
       <div class="__confirm-password-error-match">Passwords do not match</div>
       }
