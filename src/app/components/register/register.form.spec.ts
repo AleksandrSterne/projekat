@@ -73,7 +73,7 @@ describe('RegisterFormGroup', () => {
     expect(_form.get('username')?.invalid).toBeTrue();
     expect(_form.get('username')?.hasError('userFound')).toBeTrue();
   });
-  
+
   it('should not have userFound error when user is unique', () => {
     const _form = new RegisterFormGroup();
     _form.findUserCB = (username: string): boolean => {
@@ -94,5 +94,5 @@ describe('RegisterFormGroup', () => {
     expect(_form.valid).toBeTrue();
     expect(_form.get('username')?.valid).toBeTrue();
     expect(_form.get('username')?.hasError('userFound')).toBeFalse();
-  })
+  });
 });
