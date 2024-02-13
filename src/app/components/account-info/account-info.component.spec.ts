@@ -3,6 +3,32 @@ import { AccountInfoComponent } from './account-info.component';
 import { By } from '@angular/platform-browser';
 import { User } from '../../services/user.model';
 
+const _expectComponentInitialState = (
+  fixture: ComponentFixture<AccountInfoComponent>,
+  selector: string,
+  data: User
+) => {
+  fixture.detectChanges();
+
+  let header = fixture.debugElement.queryAll(
+    By.css(`${selector} .card-header h4`)
+  );
+  let body = fixture.debugElement.queryAll(
+    By.css(`${selector} .card-body div`)
+  );
+
+  expect(header.length).toBe(1);
+  expect(header[0].nativeElement.textContent).toContain('User info');
+  expect(body.length).toBe(3);
+  expect(body[0].nativeElement.textContent).toContain(`Id: ${data.id}`);
+  expect(body[1].nativeElement.textContent).toContain(
+    `Username: ${data.username}`
+  );
+  expect(body[2].nativeElement.textContent).toContain(
+    `Password: ${data.password}`
+  );
+};
+
 describe('AccountInfoComponent', () => {
   let component: AccountInfoComponent;
   let fixture: ComponentFixture<AccountInfoComponent>;
@@ -28,58 +54,8 @@ describe('AccountInfoComponent', () => {
   });
 
   describe('Initial state', () => {
-    it('should render account info container', () => {
-      const accountInfoContainer = fixture.debugElement.query(
-        By.css('.__account-info')
-      );
-
-      expect(accountInfoContainer).toBeTruthy();
-    });
-
-    it('should render account info header initial state', () => {
-      const accountInfoHeaderContainer = fixture.debugElement.query(
-        By.css('.__account-info-header-container')
-      );
-      const accountInfoHeader = fixture.debugElement.query(
-        By.css('.__account-info-header')
-      );
-      const accountInfoHeaderText = fixture.debugElement.query(
-        By.css('.__account-info-header-text')
-      );
-
-      expect(accountInfoHeaderContainer).toBeTruthy();
-      expect(accountInfoHeader).toBeTruthy();
-      expect(accountInfoHeaderText).toBeTruthy();
-      expect(accountInfoHeaderText.nativeElement.textContent).toContain(
-        'User info'
-      );
-    });
-
-    it('should render account info body initial state', () => {
-      const accountInfoBody = fixture.debugElement.query(
-        By.css('.__account-info-body')
-      );
-      const accountId = fixture.debugElement.query(By.css('.__account-id'));
-      const accountUsername = fixture.debugElement.query(
-        By.css('.__account-username')
-      );
-      const accountPassword = fixture.debugElement.query(
-        By.css('.__account-password')
-      );
-
-      expect(accountInfoBody).toBeTruthy();
-      expect(accountId).toBeTruthy();
-      expect(accountId.nativeElement.textContent).toContain(
-        `Id: ${mockUser.id}`
-      );
-      expect(accountUsername).toBeTruthy();
-      expect(accountUsername.nativeElement.textContent).toContain(
-        `Username: ${mockUser.username}`
-      );
-      expect(accountPassword).toBeTruthy();
-      expect(accountPassword.nativeElement.textContent).toContain(
-        `Password: ${mockUser.password}`
-      );
+    it('should render component initial state', () => {
+      _expectComponentInitialState(fixture, '.__account-info', mockUser);
     });
   });
 });
