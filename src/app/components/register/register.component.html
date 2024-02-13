@@ -1,70 +1,66 @@
 @if (formRef) {
-<div class="form-signing w-30 m-auto __form-group" [formGroup]="formRef">
-  <div class="__username-fc-container">
-    <div class="form-floating __username-fc">
+<div class="form-signing w-30 m-auto" [formGroup]="formRef">
+  <div class="__username-fc">
+    <div class="form-floating">
       <input
         type="text"
-        class="form-control __username-input"
+        class="form-control"
         id="username"
         placeholder="Username"
         formControlName="username"
       />
-      <label class="__username-label" for="username"> Username </label>
+      <label for="username"> Username </label>
     </div>
     @if (formRef.usernameCtrl.invalid && (formRef.usernameCtrl.touched ||
     formRef.usernameCtrl.dirty)) {
-    <div class="errors __username-errors">
+    <div class="errors">
       @if (formRef.usernameCtrl.hasError('required')) {
-      <div class="__username-error-required">This field is required</div>
+      <div>This field is required</div>
       } @if (formRef.usernameCtrl.hasError('userFound')) {
-      <div class="__username-error-user-found">Username already exists</div>
+      <div>Username already exists</div>
       }
     </div>
     }
   </div>
-  <div class="__password-fc-container">
-    <div class="form-floating __password-fc">
+  <div class="__password-fc">
+    <div class="form-floating">
       <input
         type="password"
-        class="form-control __password-input"
+        class="form-control"
         id="password"
         placeholder="Password"
         formControlName="password"
       />
-      <label class="__password-label" for="password"> Password </label>
+      <label for="password"> Password </label>
     </div>
     @if (formRef.passwordCtrl.invalid && (formRef.passwordCtrl.touched ||
     formRef.passwordCtrl.dirty)) {
-    <div class="errors __password-errors">
+    <div class="errors">
       @if (formRef.passwordCtrl.hasError('required')) {
-      <div class="__password-error-required">This field is required</div>
+      <div>This field is required</div>
       }
     </div>
     }
   </div>
-  <div class="__confirm-password-fc-container">
-    <div class="form-floating __confirm-password-fc">
+  <div class="__confirm-password-fc">
+    <div class="form-floating">
       <input
         type="password"
-        class="form-control __confirm-password-input"
+        class="form-control"
         id="confirmPassword"
         placeholder="Confirm password"
         formControlName="confirmPassword"
       />
-      <label class="__confirm-password-label" for="confirmPassword">
-        Confirm password
-      </label>
+      <label for="confirmPassword"> Confirm password </label>
     </div>
     @if (formRef.confirmPasswordCtrl.invalid &&
     (formRef.confirmPasswordCtrl.touched || formRef.confirmPasswordCtrl.dirty))
     {
-    <div class="errors __confirm-password-errors">
+    <div class="errors">
       @if (formRef.confirmPasswordCtrl.hasError('required')) {
-      <div class="__confirm-password-error-required">
-        This field is required
-      </div>
+      <div>This field is required</div>
       } @if (formRef.confirmPasswordCtrl.hasError('match')) {
-      <div class="__confirm-password-error-match">Passwords do not match</div>
+      <div>Passwords do not match</div>
       }
     </div>
     }
