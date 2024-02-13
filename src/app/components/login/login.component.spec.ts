@@ -4,6 +4,27 @@ import { LoginFormGroup } from './login.form';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
+const _expectFormFieldElements = (
+  fixture: ComponentFixture<LoginComponent>,
+  selector: string,
+  checkErrors: boolean = false,
+  errorCount: number = 0
+) => {
+  fixture.detectChanges();
+
+  let errors = fixture.debugElement.queryAll(By.css(`${selector} .errors div`));
+
+  if (!checkErrors) {
+    let input = fixture.debugElement.queryAll(By.css(`${selector} input`));
+    let label = fixture.debugElement.queryAll(By.css(`${selector} label`));
+    expect(label.length).toBe(1);
+    expect(input.length).toBe(1);
+    expect(errors.length).toBe(0);
+  } else {
+    expect(errors.length).toBe(errorCount);
+  }
+};
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
@@ -24,105 +45,39 @@ describe('LoginComponent', () => {
   });
 
   describe('Initial state', () => {
-    it('should render form group container', () => {
-      const formGroupContainer = fixture.debugElement.query(
-        By.css('.__form-group')
-      );
-
-      expect(formGroupContainer).toBeTruthy();
+    it('should render username form field elements initial state', () => {
+      _expectFormFieldElements(fixture, '.__username-fc', false, 0);
     });
 
-    it('should render username form control elements initial state', () => {
-      const usernameContainer = fixture.debugElement.query(
-        By.css('.__username-fc-container')
-      );
-      const usernameFormControl = fixture.debugElement.query(
-        By.css('.__username-fc')
-      );
-      const usernameInput = fixture.debugElement.query(
-        By.css('.__username-input')
-      );
-      const usernameLabel = fixture.debugElement.query(
-        By.css('.__username-label')
-      );
-      const usernameErrors = fixture.debugElement.query(
-        By.css('__username-errors')
-      );
-      const usernameErrorMessage = fixture.debugElement.query(
-        By.css('__username-error-message')
-      );
-
-      expect(usernameContainer).toBeTruthy();
-      expect(usernameFormControl).toBeTruthy();
-      expect(usernameInput).toBeTruthy();
-      expect(usernameLabel).toBeTruthy();
-      expect(usernameErrors).toBeFalsy();
-      expect(usernameErrorMessage).toBeFalsy();
-    });
-
-    it('should render password form control elements initial state', () => {
-      const passwordContainer = fixture.debugElement.query(
-        By.css('.__password-fc-container')
-      );
-      const passwordFormControl = fixture.debugElement.query(
-        By.css('.__password-fc')
-      );
-      const passwordInput = fixture.debugElement.query(
-        By.css('.__password-input')
-      );
-      const passwordLabel = fixture.debugElement.query(
-        By.css('.__password-label')
-      );
-      const passwordErrors = fixture.debugElement.query(
-        By.css('__password-errors')
-      );
-      const passwordErrorMessage = fixture.debugElement.query(
-        By.css('__password-error-message')
-      );
-
-      expect(passwordContainer).toBeTruthy();
-      expect(passwordFormControl).toBeTruthy();
-      expect(passwordInput).toBeTruthy();
-      expect(passwordLabel).toBeTruthy();
-      expect(passwordErrors).toBeFalsy();
-      expect(passwordErrorMessage).toBeFalsy();
+    it('should render password form field elements initial state', () => {
+      _expectFormFieldElements(fixture, '.__password-fc', false, 0);
     });
   });
 
   describe('Error state', () => {
-    it('should render required errors', () => {
+    it('should render correct error state', () => {
       component.formRef.markAllAsTouched();
+
+      component.formRef.cdr = component.cdr;
 
       component.formRef.setErrors({
         username: { required: true },
         password: { required: true },
       });
 
-      component.formRef.cdr?.detectChanges();
+      component.formRef.cdr.detectChanges();
 
-      const usernameErrors = fixture.debugElement.query(
-        By.css('.__username-errors')
-      );
-      const usernameErrorMessage = fixture.debugElement.query(
-        By.css('.__username-error-required')
-      );
-      const passwordErrors = fixture.debugElement.query(
-        By.css('.__password-errors')
-      );
-      const passwordErrorMessage = fixture.debugElement.query(
-        By.css('.__password-error-required')
-      );
+      _expectFormFieldElements(fixture, '.__username-fc', true, 1);
+      _expectFormFieldElements(fixture, '.__password-fc', true, 1);
 
-      expect(usernameErrors).toBeTruthy();
-      expect(usernameErrorMessage).toBeTruthy();
-      expect(usernameErrorMessage.nativeElement.textContent).toContain(
-        'This field is required'
-      );
-      expect(passwordErrors).toBeTruthy();
-      expect(passwordErrorMessage).toBeTruthy();
-      expect(usernameErrorMessage.nativeElement.textContent).toContain(
-        'This field is required'
-      );
+      expect(
+        fixture.debugElement.queryAll(By.css('.__username-fc .errors div'))[0]
+          .nativeElement.textContent
+      ).toContain('This field is required');
+      expect(
+        fixture.debugElement.queryAll(By.css('.__password-fc .errors div'))[0]
+          .nativeElement.textContent
+      ).toContain('This field is required');
     });
   });
 });
