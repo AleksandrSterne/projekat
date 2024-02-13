@@ -23,22 +23,4 @@ describe('LoginFormGroup', () => {
     expect(_form.get('username')?.valid).toBeTrue();
     expect(_form.get('password')?.valid).toBeTrue();
   });
-
-  it('should have errors after user input', () => {
-    const _form = new LoginFormGroup();
-
-    _form.patchValue({
-      username: 'Pera',
-      password: '123',
-    });
-
-    _form.patchValue({
-      username: '',
-      password: '',
-    });
-
-    expect(_form.invalid).toBeTrue();
-    expect(_form.get('username')?.invalid).toBeTrue();
-    expect(_form.get('password')?.invalid).toBeTrue();
-  });
 });

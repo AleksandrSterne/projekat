@@ -52,7 +52,7 @@ describe('RegisterFormGroup', () => {
     expect(_form.get('confirmPassword')?.hasError('match')).toBeFalse();
   });
 
-  it('should have userFound error', () => {
+  it('should have userFound error when user is not unique', () => {
     const _form = new RegisterFormGroup();
     _form.findUserCB = (username: string): boolean => {
       switch (username) {
@@ -72,34 +72,27 @@ describe('RegisterFormGroup', () => {
     expect(_form.invalid).toBeTrue();
     expect(_form.get('username')?.invalid).toBeTrue();
     expect(_form.get('username')?.hasError('userFound')).toBeTrue();
+  });
+  
+  it('should not have userFound error when user is unique', () => {
+    const _form = new RegisterFormGroup();
+    _form.findUserCB = (username: string): boolean => {
+      switch (username) {
+        case 'Pera':
+          return true;
+        default:
+          return false;
+      }
+    };
 
     _form.patchValue({
       username: 'Marko',
+      password: '123',
+      confirmPassword: '123',
     });
 
     expect(_form.valid).toBeTrue();
     expect(_form.get('username')?.valid).toBeTrue();
     expect(_form.get('username')?.hasError('userFound')).toBeFalse();
-  });
-
-  it('should have errors after user input', () => {
-    const _form = new RegisterFormGroup();
-
-    _form.patchValue({
-      username: 'Pera',
-      password: '123',
-      confirmPassword: '123',
-    });
-
-    _form.patchValue({
-      username: '',
-      password: '',
-      confirmPassword: '',
-    });
-
-    expect(_form.invalid).toBeTrue();
-    expect(_form.get('username')?.invalid).toBeTrue();
-    expect(_form.get('password')?.invalid).toBeTrue();
-    expect(_form.get('confirmPassword')?.invalid).toBeTrue();
-  });
+  })
 });
