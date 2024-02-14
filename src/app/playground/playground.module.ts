@@ -29,16 +29,16 @@ const playgroundRoutes: Routes = [
         title: 'Dropdowns',
         loadComponent: () =>
           import(
-            './pages/dropdowns-page/playground-dropdowns-page.component'
+            './pages/playground-dropdowns-page/playground-dropdowns-page.component'
           ).then((c) => c.PlaygroundDropdownsPageComponent),
       },
       {
         path: 'grid',
         title: 'Grid',
         loadComponent: () =>
-          import('./pages/grid-page/playground-grid-page.component').then(
-            (c) => c.PlaygroundGridPageComponent
-          ),
+          import(
+            './pages/playground-grid-page/playground-grid-page.component'
+          ).then((c) => c.PlaygroundGridPageComponent),
       },
       {
         path: 'inputs',
