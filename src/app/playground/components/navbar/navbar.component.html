@@ -1,1 +1,27 @@
-<p>navbar works!</p>
+<kendo-appbar position="top">
+  <kendo-appbar-section>
+    <button kendoButton fillMode="flat">
+      <kendo-svgicon [icon]="menuIcon"></kendo-svgicon>
+    </button>
+  </kendo-appbar-section>
+
+  <kendo-appbar-spacer width="2px"></kendo-appbar-spacer>
+
+  <kendo-appbar-section>
+    <div class="title" routerLink="/playground">Playground</div>
+  </kendo-appbar-section>
+
+  <kendo-appbar-spacer width="32px"></kendo-appbar-spacer>
+
+  <kendo-appbar-section>
+    <ul>
+      <li routerLink="./buttons"><span>Buttons</span></li>
+      <li routerLink="./date-inputs"><span>Date inputs</span></li>
+      <li routerLink="./dropdowns"><span>Dropdowns</span></li>
+      <li routerLink="./grid"><span>Grid</span></li>
+      <li routerLink="./inputs"><span>Inputs</span></li>
+    </ul>
+  </kendo-appbar-section>
+
+  <kendo-appbar-spacer></kendo-appbar-spacer>
+</kendo-appbar>
