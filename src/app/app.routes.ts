@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth.guard';
 import { loggedInGuard } from './services/logged-in.guard';
-import { playgroundRoutes } from './playground/playground.routes';
 
 export const routes: Routes = [
   {
@@ -29,7 +28,14 @@ export const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
-  ...playgroundRoutes,
+  {
+    path: 'playground',
+    title: 'Playground',
+    loadChildren: () =>
+      import('./playground/playground.module').then(
+        (c) => c.PlaygroundModule
+      ),
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];

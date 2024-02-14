@@ -6,13 +6,13 @@ import { AppBarModule } from '@progress/kendo-angular-navigation';
 import { SVGIcon, menuIcon } from '@progress/kendo-svg-icons';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-playground-navbar',
   standalone: true,
   imports: [AppBarModule, IconsModule, RouterLink, ButtonsModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  templateUrl: './playground-navbar.component.html',
+  styleUrl: './playground-navbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent {
+export class PlaygroundNavbarComponent {
   public menuIcon: SVGIcon = menuIcon;
 }
