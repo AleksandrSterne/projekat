@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth.guard';
 import { loggedInGuard } from './services/logged-in.guard';
+import { playgroundRoutes } from './playground/playground.routes';
 
 export const routes: Routes = [
   {
@@ -21,11 +22,14 @@ export const routes: Routes = [
   },
   {
     path: 'account',
+    title: 'Account',
     loadComponent: () =>
       import('./pages/account-page/account-page.component').then(
         (c) => c.AccountPageComponent
       ),
     canActivate: [authGuard],
   },
+  ...playgroundRoutes,
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];

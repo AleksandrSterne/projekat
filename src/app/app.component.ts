@@ -12,7 +12,7 @@ import { LoginService } from './services/login.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'projekat';
+  title = 'Projekat';
 
   constructor(
     private _userService: UserService,
