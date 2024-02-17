@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundPageComponent } from './pages/playground-page/playground-page.component';
 import { PlaygroundNavbarComponent } from './components/playground-navbar/playground-navbar.component';
+import { PlaygroundDrawerComponent } from './components/playground-drawer/playground-drawer.component';
 
 const playgroundRoutes: Routes = [
   {
@@ -54,7 +55,11 @@ const playgroundRoutes: Routes = [
 
 @NgModule({
   declarations: [PlaygroundPageComponent],
-  imports: [RouterModule.forChild(playgroundRoutes), PlaygroundNavbarComponent],
+  imports: [
+    RouterModule.forChild(playgroundRoutes),
+    PlaygroundNavbarComponent,
+    PlaygroundDrawerComponent,
+  ],
   exports: [],
 })
 export class PlaygroundModule {}

@@ -1,2 +1,6 @@
-<app-playground-navbar></app-playground-navbar>
+<app-playground-navbar
+  [expanded]="expanded"
+  (toggleEvent)="toggleExpanded($event)"
+></app-playground-navbar>
+<app-playground-drawer [expanded]="expanded"></app-playground-drawer>
 <router-outlet></router-outlet>

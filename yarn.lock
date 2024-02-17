@@ -1965,12 +1965,23 @@
   resolved "https://registry.yarnpkg.com/@progress/kendo-svg-icons/-/kendo-svg-icons-2.1.0.tgz#6a82dfa7a93056318e7e3c50b660164cd783afba"
   integrity sha512-zAwxw8lt5xlIBMoE3uwUX2Z2RI5njWViYxdFoinvr5d8WJ6kU3sghNONsRelM9GiDd2vbSg0IkEN8dOrBvFjPg==
 
+"@progress/kendo-theme-bootstrap@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-theme-bootstrap/-/kendo-theme-bootstrap-7.2.0.tgz#c399c6f1cdfc5821ccefc5ef20b904ee0c7f44a0"
+  integrity sha512-8BXvvu+wsR/zE9kHgZI68PsF5mSIf7AYVysbd64VxlNKU0HtNRW9yil4rhiYzhAgG0G70kQVxlX5FMMTMAP/sQ==
+  dependencies:
+    "@progress/kendo-svg-icons" "2.1.0"
+    "@progress/kendo-theme-core" "7.2.0"
+    "@progress/kendo-theme-default" "7.2.0"
+    "@progress/kendo-theme-utils" "7.2.0"
+    bootstrap "5.2.1"
+
 "@progress/kendo-theme-core@7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@progress/kendo-theme-core/-/kendo-theme-core-7.2.0.tgz#216a0762618b76f3aa78a8c24ddafd30d31b304c"
   integrity sha512-jzXzL0TY+6GpqVtQF9EIdy5EW81S9EEFAFEd2B7Zi1eN9WjGn7agDaAi6+hKNsCMBIv81Vmxahvs6C16ccU3UA==
 
-"@progress/kendo-theme-default@^7.2.0":
+"@progress/kendo-theme-default@7.2.0", "@progress/kendo-theme-default@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@progress/kendo-theme-default/-/kendo-theme-default-7.2.0.tgz#09df99fe74ed1dd54a1ccf4f37c2e85023d319fd"
   integrity sha512-57cf6Cwl94S87dNhOQwajEbAaPcLnq0jL9jxxMEG/cY18y3ErGrTy1jaUvsSfIHEEMgKVUqkTdb4+Od6dKrSaA==
@@ -2786,6 +2797,11 @@ boolbase@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
+
+bootstrap@5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.1.tgz#45f97ff05cbe828bad807b014d8425f3aeb8ec3a"
+  integrity sha512-UQi3v2NpVPEi1n35dmRRzBJFlgvWHYwyem6yHhuT6afYF+sziEt46McRbT//kVXZ7b1YUYEVGdXEH74Nx3xzGA==
 
 bootstrap@^5.3.2:
   version "5.3.2"

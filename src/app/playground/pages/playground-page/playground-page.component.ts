@@ -6,4 +6,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './playground-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaygroundPageComponent {}
+export class PlaygroundPageComponent {
+  expanded: boolean = false;
+
+  toggleExpanded(value: boolean) {
+    this.expanded = value;
+  }
+}

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { IconsModule } from '@progress/kendo-angular-icons';
@@ -14,5 +20,12 @@ import { SVGIcon, menuIcon } from '@progress/kendo-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaygroundNavbarComponent {
+  @Input() expanded: boolean = false;
+  @Output() toggleEvent = new EventEmitter<boolean>();
+
   public menuIcon: SVGIcon = menuIcon;
+
+  toggleExpanded(value: boolean) {
+    this.toggleEvent.emit(!value);
+  }
 }
