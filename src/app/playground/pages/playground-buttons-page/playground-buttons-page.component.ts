@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonsModule, DialItem } from '@progress/kendo-angular-buttons';
-import { AutoCompleteModule } from '@progress/kendo-angular-dropdowns';
 import {
   SVGIcon,
   alignCenterIcon,
@@ -27,7 +26,7 @@ import {
 @Component({
   selector: 'app-playground-buttons-page',
   standalone: true,
-  imports: [AutoCompleteModule, ButtonsModule],
+  imports: [ButtonsModule],
   templateUrl: './playground-buttons-page.component.html',
   styleUrl: './playground-buttons-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
