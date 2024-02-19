@@ -1,95 +1,373 @@
-<div class="row;">
-  <div class="col-xs-12 col-sm-6 col-lg-3 example-col">
-    <p>Solid Button</p>
-    <button kendoButton (click)="onClick()">Browse</button>
-    <button kendoButton (click)="onClick()" [svgIcon]="folderSVG">
-      Browse
-    </button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      title="Browse"
-    ></button>
+<div class="container-fluid row">
+  <div class="col p-100">
+    <div class="row">
+      <p>Solid Button</p>
+      <button kendoButton (click)="onClick()">Browse</button>
+      <button kendoButton (click)="onClick()" [svgIcon]="folderSVG">
+        Browse
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        title="Browse"
+      ></button>
+    </div>
+    <div class="row">
+      <p>Flat Button</p>
+      <button kendoButton (click)="onClick()" fillMode="flat">Browse</button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="flat"
+      >
+        Browse
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="flat"
+        title="Browse"
+      ></button>
+    </div>
+    <div class="row">
+      <p>Outline Button</p>
+      <button kendoButton (click)="onClick()" fillMode="outline">Browse</button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="outline"
+      >
+        Browse
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="outline"
+        title="Browse"
+      ></button>
+    </div>
+    <div class="row">
+      <p>Clear Button</p>
+      <button kendoButton (click)="onClick()" fillMode="clear">Browse</button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="clear"
+      >
+        Browse
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="clear"
+        title="Browse"
+      ></button>
+    </div>
+    <div class="row">
+      <p>Link Button</p>
+      <button kendoButton (click)="onClick()" fillMode="link">Browse</button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="link"
+      >
+        Browse
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        [svgIcon]="folderSVG"
+        fillMode="link"
+        title="Browse"
+      ></button>
+    </div>
+    <div class="row">
+      <p>Default Toggleable Button</p>
+      <button
+        kendoButton
+        (selectedChange)="onClick()"
+        themeColor="primary"
+        [toggleable]="true"
+      >
+        Petrol
+      </button>
+      <button kendoButton (selectedChange)="onClick()" [toggleable]="true">
+        Diesel
+      </button>
+    </div>
+    <div class="row">
+      <p>Flat Toggleable Button</p>
+      <button
+        kendoButton
+        fillMode="flat"
+        themeColor="primary"
+        [toggleable]="true"
+      >
+        Petrol
+      </button>
+      <button kendoButton fillMode="flat" [toggleable]="true">Diesel</button>
+    </div>
+    <div class="row">
+      <p>Outline Toggleable Button</p>
+      <button
+        kendoButton
+        fillMode="outline"
+        themeColor="primary"
+        [toggleable]="true"
+      >
+        Petrol
+      </button>
+      <button kendoButton fillMode="outline" [toggleable]="true">Diesel</button>
+    </div>
   </div>
-
-  <div class="col-xs-12 col-sm-6 col-lg-3 example-col">
-    <p>Flat Button</p>
-    <button kendoButton (click)="onClick()" fillMode="flat">Browse</button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="flat"
-    >
-      Browse
-    </button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="flat"
-      title="Browse"
-    ></button>
+  <div class="col p-100">
+    <div class="row">
+      <p>Icon buttons</p>
+      <kendo-button [svgIcon]="cartSVG">Buy</kendo-button>
+      <kendo-button [svgIcon]="cartSVG" title="Cart"></kendo-button>
+      <kendo-button [svgIcon]="codeSVG">Insert Code</kendo-button>
+      <kendo-button [svgIcon]="codeSVG" title="Insert Code"></kendo-button>
+      <kendo-button [svgIcon]="anchorSVG">Ferry Port</kendo-button>
+      <kendo-button [svgIcon]="anchorSVG" title="Ferry Port"></kendo-button>
+    </div>
+    <div class="row">
+      <p>Disabled buttons</p>
+      <button
+        kendoButton
+        (click)="onClick()"
+        themeColor="primary"
+        [disabled]="true"
+      >
+        Apply
+      </button>
+      <button kendoButton (click)="onClick()" [disabled]="true">Cancel</button>
+    </div>
+    <div class="row">
+      <p>Flat Disabled Button</p>
+      <button
+        kendoButton
+        (click)="onClick()"
+        fillMode="flat"
+        themeColor="primary"
+        [disabled]="true"
+      >
+        Apply
+      </button>
+      <button kendoButton (click)="onClick()" fillMode="flat" [disabled]="true">
+        Cancel
+      </button>
+    </div>
+    <div class="row">
+      <p>Outline Disabled Button</p>
+      <button
+        kendoButton
+        (click)="onClick()"
+        fillMode="outline"
+        themeColor="primary"
+        [disabled]="true"
+      >
+        Apply
+      </button>
+      <button
+        kendoButton
+        (click)="onClick()"
+        fillMode="outline"
+        [disabled]="true"
+      >
+        Cancel
+      </button>
+    </div>
+    <div class="row">
+      <p>Link Disabled Button</p>
+      <button
+        kendoButton
+        (click)="onClick()"
+        fillMode="link"
+        themeColor="primary"
+        [disabled]="true"
+      >
+        Apply
+      </button>
+      <button kendoButton (click)="onClick()" fillMode="link" [disabled]="true">
+        Cancel
+      </button>
+    </div>
+    <div class="row">
+      <p>Kendo button groups</p>
+      <p>Icons only</p>
+      <kendo-buttongroup>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="boldSVG"
+          title="Bold"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="italicSVG"
+          title="Italic"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="underlineSVG"
+          title="Underline"
+        ></button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Text only</p>
+      <kendo-buttongroup>
+        <button kendoButton [toggleable]="true">Bold</button>
+        <button kendoButton [toggleable]="true">Italic</button>
+        <button kendoButton [toggleable]="true">Underline</button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Icons + Text</p>
+      <kendo-buttongroup>
+        <button kendoButton [toggleable]="true" [svgIcon]="boldSVG">
+          Bold
+        </button>
+        <button kendoButton [toggleable]="true" [svgIcon]="italicSVG">
+          Italic
+        </button>
+        <button kendoButton [toggleable]="true" [svgIcon]="underlineSVG">
+          Underline
+        </button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Buttons with responsive width</p>
+      <kendo-buttongroup width="100%">
+        <button kendoButton [toggleable]="true" [svgIcon]="boldSVG">
+          Bold
+        </button>
+        <button kendoButton [toggleable]="true" [svgIcon]="italicSVG">
+          Italic
+        </button>
+        <button kendoButton [toggleable]="true" [svgIcon]="underlineSVG">
+          Underline
+        </button>
+      </kendo-buttongroup>
+    </div>
   </div>
-
-  <div class="col-xs-12 col-sm-6 col-lg-3 example-col">
-    <p>Outline Button</p>
-    <button kendoButton (click)="onClick()" fillMode="outline">Browse</button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="outline"
-    >
-      Browse
-    </button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="outline"
-      title="Browse"
-    ></button>
-  </div>
-
-  <div class="col-xs-12 col-sm-6 col-lg-3 example-col">
-    <p>Clear Button</p>
-    <button kendoButton (click)="onClick()" fillMode="clear">Browse</button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="clear"
-    >
-      Browse
-    </button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="clear"
-      title="Browse"
-    ></button>
-  </div>
-
-  <div class="col-xs-12 col-sm-6 col-lg-3 example-col">
-    <p>Link Button</p>
-    <button kendoButton (click)="onClick()" fillMode="link">Browse</button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="link"
-    >
-      Browse
-    </button>
-    <button
-      kendoButton
-      (click)="onClick()"
-      [svgIcon]="folderSVG"
-      fillMode="link"
-      title="Browse"
-    ></button>
+  <div class="col p-100">
+    <div class="row">
+      <p>Disabled ButtonGroup</p>
+      <kendo-buttongroup [disabled]="disabled">
+        <button kendoButton [toggleable]="true" [disabled]="disabled">
+          Bold
+        </button>
+        <button kendoButton [toggleable]="true" [disabled]="disabled">
+          Italic
+        </button>
+        <button kendoButton [toggleable]="true" [disabled]="disabled">
+          Underline
+        </button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Single selection mode</p>
+      <kendo-buttongroup selection="single">
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="alignLeftSVG"
+          title="Align-left"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="alignCenterSVG"
+          title="Align-center"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="alignRightSVG"
+          title="Align-right"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="alignJustifySVG"
+          title="Align-justify"
+        ></button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Multiple selection mode</p>
+      <kendo-buttongroup>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="boldSVG"
+          title="Bold"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="italicSVG"
+          title="Italic"
+        ></button>
+        <button
+          kendoButton
+          [toggleable]="true"
+          [svgIcon]="underlineSVG"
+          title="Underline"
+        ></button>
+      </kendo-buttongroup>
+    </div>
+    <div class="row">
+      <p>Dropdown buttons</p>
+      <p>Default Button</p>
+      <kendo-dropdownbutton [data]="dropdownData">
+        User Settings
+      </kendo-dropdownbutton>
+      <p>Primary Button</p>
+      <kendo-dropdownbutton [data]="dropdownData" themeColor="primary">
+        User Settings
+      </kendo-dropdownbutton>
+      <p>Outline Button</p>
+      <kendo-dropdownbutton [data]="dropdownData" fillMode="outline">
+        User Settings
+      </kendo-dropdownbutton>
+      <p>Flat Button</p>
+      <kendo-dropdownbutton [data]="dropdownData" fillMode="flat">
+        User Settings
+      </kendo-dropdownbutton>
+    </div>
+    <div class="row">
+      <p>Dropdown button with icons</p>
+      <kendo-dropdownbutton [svgIcon]="shareSVG" [data]="shareData">
+        Share
+      </kendo-dropdownbutton>
+    </div>
+    <div class="row">
+      <div class="k-card k-card-vertical">
+        <h5>Floating action button</h5>
+        <div class="k-card-body">
+          <kendo-floatingactionbutton
+            text="Button with dial"
+            title="Button with dial"
+            [align]="{ horizontal: 'end', vertical: 'middle' }"
+            [dialItems]="dialItems"
+            positionMode="absolute"
+            (click)="onClick()"
+          >
+          </kendo-floatingactionbutton>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
