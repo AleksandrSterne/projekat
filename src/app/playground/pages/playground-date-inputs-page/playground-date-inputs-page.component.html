@@ -1,0 +1,276 @@
+<div class="container-fluid row">
+  <div class="col p-100">
+    <div class="row row-container-width">
+      <p>Infinite Calendar with disabled dates</p>
+      <kendo-calendar
+        type="infinite"
+        [disabledDates]="disabledDates"
+      ></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Classic Calendar with focused date and week number</p>
+      <kendo-calendar
+        type="classic"
+        [value]="value"
+        [weekNumber]="true"
+      ></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Multiple selection with animations</p>
+      <kendo-calendar
+        selection="multiple"
+        [weekNumber]="true"
+        [animateNavigation]="true"
+        (valueChange)="onChange($event)"
+      ></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Disabled Calendar</p>
+      <kendo-calendar [disabled]="true"></kendo-calendar>
+    </div>
+  </div>
+  <div class="col p-100">
+    <div class="row row-container-width">
+      <p>Calendar with date range</p>
+      <kendo-calendar [min]="min" [max]="max"></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Calendar with fast navigation bar enabled</p>
+      <kendo-calendar [navigation]="true"></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Calendar with active view set to decade</p>
+      <kendo-calendar activeView="decade" [(value)]="value"></kendo-calendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Calendar with view selection depth</p>
+      <kendo-calendar
+        bottomView="year"
+        topView="decade"
+        [(value)]="value"
+      ></kendo-calendar>
+    </div>
+  </div>
+  <div class="col p-100">
+    <div class="row row-container-width">
+      <p>Date input</p>
+      <kendo-dateinput placeholder="mm/dd/yyyy"></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Disabled date input</p>
+      <kendo-dateinput
+        placeholder="mm/dd/yyyy"
+        [disabled]="true"
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Read only date input</p>
+      <kendo-dateinput
+        placeholder="mm/dd/yyyy"
+        [readonly]="true"
+        [value]="value"
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with incremental steps</p>
+      <kendo-dateinput
+        format="MM/dd/yyyy hh:mm a"
+        [steps]="steps"
+        [value]="value"
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with formated date</p>
+      <kendo-dateinput [format]="format" [value]="value"></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with two digit year max</p>
+      <kendo-dateinput
+        #input
+        [format]="shortFormat"
+        [value]="value"
+        [twoDigitYearMax]="twoDigitYearMax"
+      >
+      </kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with caret mode</p>
+      <kendo-dateinput
+        [allowCaretMode]="true"
+        [value]="value"
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with placeholder</p>
+      <kendo-dateinput
+        placeholder="Type in your birth date..."
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with custom input field format</p>
+      <kendo-dateinput
+        format="G"
+        [formatPlaceholder]="{
+          year: 'y',
+          month: 'M',
+          day: 'd',
+          hour: 'h',
+          minute: 'm',
+          second: 's'
+        }"
+      ></kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date input with custom appearance</p>
+      <kendo-dateinput
+        size="large"
+        rounded="full"
+        fillMode="outline"
+        [value]="value"
+      >
+      </kendo-dateinput>
+    </div>
+    <div class="row row-container-width">
+      <p>Date pickers</p>
+      <p>
+        Date picker with calendar type, navigation animation, and focused date
+      </p>
+      <kendo-datepicker
+        placeholder="Choose a date ..."
+        calendarType="infinite"
+        [animateCalendarNavigation]="true"
+        [focusedDate]="value"
+      ></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date picker with active view, view selection depth, and week number</p>
+      <kendo-datepicker
+        bottomView="year"
+        topView="decade"
+        activeView="decade"
+        format="MMMM yyyy"
+        [value]="value"
+        [weekNumber]="true"
+      ></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Disabled date picker</p>
+      <kendo-datepicker [disabled]="true" [value]="value"></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Read only date picker</p>
+      <kendo-datepicker [readonly]="true" [value]="value"></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Read only input date picker</p>
+      <kendo-datepicker
+        [readOnlyInput]="true"
+        [value]="value"
+      ></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date picker with disabled dates</p>
+      <kendo-datepicker
+        [disabledDates]="disabledDates"
+        [value]="value"
+      ></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date picker with date range</p>
+      <kendo-datepicker
+        [min]="min"
+        [max]="max"
+        [value]="value"
+      ></kendo-datepicker>
+    </div>
+  </div>
+  <div class="col p-100">
+    <div class="row row-container-width">
+      <p>Date picker with no navigation bar</p>
+      <kendo-datepicker [navigation]="false"></kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date picker with formated date</p>
+      <kendo-datepicker
+        #shortDate
+        format="MMMM yyyy"
+        [value]="value"
+        activeView="year"
+        bottomView="year"
+      >
+      </kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date picker with two digit year format</p>
+      <kendo-datepicker
+        [format]="shortFormat"
+        [value]="value"
+        [twoDigitYearMax]="twoDigitYearMax"
+        [min]="min"
+        [max]="max"
+      >
+      </kendo-datepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date time picker</p>
+      <kendo-datetimepicker
+        [format]="format"
+        [value]="value"
+      ></kendo-datetimepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date time picker with no cancel button</p>
+      <kendo-datetimepicker [cancelButton]="false"> </kendo-datetimepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date time picker with popup settings</p>
+      <kendo-datetimepicker
+        [popupSettings]="popupSettings"
+      ></kendo-datetimepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date time picker with default tab set</p>
+      <kendo-datetimepicker defaultTab="time"> </kendo-datetimepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date time picker with adaptive mode</p>
+      <kendo-datetimepicker
+        [format]="format"
+        [value]="value"
+        adaptiveMode="auto"
+        title="Select Date & Time"
+        subtitle="MM/dd/yyyy HH:mm"
+      >
+      </kendo-datetimepicker>
+    </div>
+    <div class="row row-container-width">
+      <p>Date range input with auto correct and adaptive mode</p>
+      <kendo-daterange>
+        <kendo-dateinput
+          kendoDateRangeStartInput
+          autoCorrectOn="blur"
+          [(value)]="range.start"
+        ></kendo-dateinput>
+        <kendo-dateinput
+          kendoDateRangeEndInput
+          autoCorrectOn="blur"
+          [(value)]="range.end"
+        ></kendo-dateinput>
+        <kendo-daterange-popup
+          adaptiveMode="auto"
+          title="Select Range"
+          subtitle="month/day/year"
+        >
+        </kendo-daterange-popup>
+      </kendo-daterange>
+    </div>
+    <div class="row">
+      <p>Multiview calendar</p>
+      <kendo-multiviewcalendar [views]="3"></kendo-multiviewcalendar>
+    </div>
+    <div class="row row-container-width">
+      <p>Time picker</p>
+      <kendo-timepicker [value]="value"></kendo-timepicker>
+    </div>
+  </div>
+</div>
