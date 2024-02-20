@@ -2,7 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { GroupResult, groupBy } from '@progress/kendo-data-query';
 import { storeProducts } from './store-products';
-import { searchIcon } from '@progress/kendo-svg-icons';
+import {
+  SVGIcon,
+  copyIcon,
+  mapMarkerIcon,
+  searchIcon,
+} from '@progress/kendo-svg-icons';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
 @Component({
@@ -56,7 +61,9 @@ export class PlaygroundDropdownsPageComponent {
   public itemDisabled(itemArgs: { dataItem: string; index: number }): boolean {
     return itemArgs.index === 2;
   }
-  public searchSVG = searchIcon;
+  public searchSVG: SVGIcon = searchIcon;
+  public mapMarkerSVG: SVGIcon = mapMarkerIcon;
+  public copySVG: SVGIcon = copyIcon;
 
   constructor() {
     this.data = this.areaList.slice();

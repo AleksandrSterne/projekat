@@ -49,7 +49,7 @@
     <div class="row">
       <p>Autocomplete with icon and button</p>
       <kendo-autocomplete [data]="areaList">
-        <ng-template kendoPrefixTemplate>
+        <ng-template kendoPrefixTemplate [showSeparator]="true">
           <button kendoButton fillMode="flat" [svgIcon]="searchSVG"></button>
         </ng-template>
         <ng-template kendoSuffixTemplate>
@@ -57,9 +57,115 @@
         </ng-template>
       </kendo-autocomplete>
     </div>
+    <div class="row">
+      <p>Autocomplete with custom appearance and adaptive mode</p>
+      <kendo-autocomplete
+        size="large"
+        rounded="full"
+        fillMode="outline"
+        adaptiveMode="auto"
+        [data]="data"
+      >
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Combo box with custom values and filtering</p>
+      <kendo-combobox
+        [data]="data"
+        [allowCustom]="true"
+        [value]="city"
+        [filterable]="true"
+        (filterChange)="handleFilter($event)"
+        [kendoDropDownFilter]="{ caseSensitive: false, operator: 'contains' }"
+      >
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with grouped data, non sticky header and virtualization</p>
+      <kendo-combobox
+        [data]="groupedData"
+        [showStickyHeader]="false"
+        [virtual]="virtual"
+        textField="name"
+        valueField="name"
+      >
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with disabled items and suggestions</p>
+      <kendo-combobox
+        placeholder="Select item..."
+        [itemDisabled]="itemDisabled"
+        [data]="data"
+        [suggest]="true"
+      >
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with custom appearance and adaptive mode</p>
+      <kendo-combobox
+        size="large"
+        rounded="full"
+        fillMode="outline"
+        adaptiveMode="auto"
+        [data]="data"
+      >
+      </kendo-combobox>
+    </div>
   </div>
   <div class="col p-100">
-    <div class="row">Hello</div>
+    <div class="row">
+      <p>Combo box with header and footer templates</p>
+      <kendo-combobox [data]="data" [value]="city">
+        <ng-template kendoComboBoxHeaderTemplate>
+          <h4>Cities</h4>
+        </ng-template>
+        <ng-template kendoComboBoxFooterTemplate>
+          <h4>Cities</h4>
+        </ng-template>
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with no data template</p>
+      <kendo-combobox [data]="[]">
+        <ng-template kendoComboBoxNoDataTemplate> No data here </ng-template>
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with grouped data and group headers template</p>
+      <kendo-combobox
+        [data]="groupedData"
+        [textField]="'name'"
+        [valueField]="'name'"
+      >
+        <ng-template kendoComboBoxGroupTemplate let-groupName>
+          <strong>Product: {{ groupName }}</strong>
+        </ng-template>
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with grouped data and fixed group header template</p>
+      <kendo-combobox
+        [data]="groupedData"
+        [textField]="'name'"
+        [valueField]="'name'"
+      >
+        <ng-template kendoComboBoxFixedGroupTemplate let-groupName>
+          <strong>Product: {{ groupName }}</strong>
+        </ng-template>
+      </kendo-combobox>
+    </div>
+    <div class="row">
+      <p>Combo box with icons, separator and no built-in clear button</p>
+      <kendo-combobox [data]="data" [allowCustom]="true" [clearButton]="false">
+        <ng-template kendoPrefixTemplate [showSeparator]="true">
+          <button kendoButton fillMode="flat" [svgIcon]="mapMarkerSVG"></button>
+        </ng-template>
+        <ng-template kendoSuffixTemplate [showSeparator]="true">
+          <button kendoButton fillMode="flat" [svgIcon]="copySVG"></button>
+        </ng-template>
+      </kendo-combobox>
+    </div>
   </div>
   <div class="col p-100">
     <div class="row">Hello</div>
