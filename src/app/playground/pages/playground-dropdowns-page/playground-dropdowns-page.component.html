@@ -1,0 +1,70 @@
+<div class="container-fluid row">
+  <div class="col p-100">
+    <div class="row">
+      <p>Autocomplete</p>
+      <kendo-autocomplete [data]="areaList" placeholder="e.g. New York">
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Autocomplete with value set and suggestions</p>
+      <kendo-autocomplete
+        [data]="areaList"
+        [value]="city"
+        [suggest]="true"
+        placeholder="e.g. New York"
+      >
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Autocomplete with filter, a disabled item, and no highlighting</p>
+      <kendo-autocomplete
+        [data]="data"
+        [itemDisabled]="itemDisabled"
+        [highlightFirst]="false"
+        placeholder="e.g. New York"
+        [filterable]="true"
+        (filterChange)="handleFilter($event)"
+      >
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Autocomplete with grouped data, no sticky header and virtualization</p>
+      <kendo-autocomplete
+        [data]="groupedData"
+        [showStickyHeader]="false"
+        [virtual]="virtual"
+        textField="name"
+        valueField="name"
+      >
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Autocomplete with no data template</p>
+      <kendo-autocomplete [data]="[]">
+        <ng-template kendoAutoCompleteNoDataTemplate>
+          <h4>No data here</h4>
+        </ng-template>
+      </kendo-autocomplete>
+    </div>
+    <div class="row">
+      <p>Autocomplete with icon and button</p>
+      <kendo-autocomplete [data]="areaList">
+        <ng-template kendoPrefixTemplate>
+          <button kendoButton fillMode="flat" [svgIcon]="searchSVG"></button>
+        </ng-template>
+        <ng-template kendoSuffixTemplate>
+          <button kendoButton fillMode="flat">Send</button>
+        </ng-template>
+      </kendo-autocomplete>
+    </div>
+  </div>
+  <div class="col p-100">
+    <div class="row">Hello</div>
+  </div>
+  <div class="col p-100">
+    <div class="row">Hello</div>
+  </div>
+  <div class="col p-100">
+    <div class="row">Hello</div>
+  </div>
+</div>
