@@ -133,11 +133,7 @@
     </div>
     <div class="row">
       <p>Combo box with grouped data and group headers template</p>
-      <kendo-combobox
-        [data]="groupedData"
-        [textField]="'name'"
-        [valueField]="'name'"
-      >
+      <kendo-combobox [data]="groupedData" textField="name" valueField="name">
         <ng-template kendoComboBoxGroupTemplate let-groupName>
           <strong>Product: {{ groupName }}</strong>
         </ng-template>
@@ -145,11 +141,7 @@
     </div>
     <div class="row">
       <p>Combo box with grouped data and fixed group header template</p>
-      <kendo-combobox
-        [data]="groupedData"
-        [textField]="'name'"
-        [valueField]="'name'"
-      >
+      <kendo-combobox [data]="groupedData" textField="name" valueField="name">
         <ng-template kendoComboBoxFixedGroupTemplate let-groupName>
           <strong>Product: {{ groupName }}</strong>
         </ng-template>
@@ -166,9 +158,84 @@
         </ng-template>
       </kendo-combobox>
     </div>
+    <div class="row">
+      <p>Dropdown list with default item</p>
+      <kendo-dropdownlist
+        [data]="areaList"
+        defaultItem="Select city..."
+      ></kendo-dropdownlist>
+    </div>
+    <div class="row">
+      <p>Dropdown list with value set and disabled item</p>
+      <kendo-dropdownlist
+        [data]="areaList"
+        [value]="city"
+        [itemDisabled]="itemDisabled"
+      ></kendo-dropdownlist>
+    </div>
+    <div class="row">
+      <p>Dropdown list with filtering, filtering settings</p>
+      <kendo-dropdownlist
+        [data]="data"
+        [filterable]="true"
+        [kendoDropDownFilter]="{ caseSensitive: false, operator: 'startsWith' }"
+        textField="text"
+        valueField="value"
+        (filterChange)="handleFilter($event)"
+      >
+      </kendo-dropdownlist>
+    </div>
+    <div class="row">
+      <p>
+        Dropdown list with grouped data, non sticky header and virtualization
+      </p>
+      <kendo-dropdownlist
+        [virtual]="virtual"
+        [data]="groupedData"
+        [showStickyHeader]="false"
+        textField="name"
+        valueField="name"
+      >
+      </kendo-dropdownlist>
+    </div>
+    <div class="row">
+      <p>Dropdown list with custom appearance and adaptive mode</p>
+      <kendo-dropdownlist
+        size="large"
+        rounded="full"
+        fillMode="outline"
+        adaptiveMode="auto"
+        [data]="data"
+      >
+      </kendo-dropdownlist>
+    </div>
+    <div class="row">
+      <p>Dropdown list with header and footer templates</p>
+      <kendo-dropdownlist
+        [data]="data"
+        textField="text"
+        valueField="value"
+        [value]="city"
+        [valuePrimitive]="true"
+      >
+        <ng-template kendoDropDownListHeaderTemplate>
+          <h4>Cities</h4>
+        </ng-template>
+        <ng-template kendoDropDownListFooterTemplate>
+          <h4>Cities</h4>
+        </ng-template>
+      </kendo-dropdownlist>
+    </div>
   </div>
   <div class="col p-100">
-    <div class="row">Hello</div>
+    <div class="row">
+      <p>Dropdown list with no data template</p>
+      <kendo-dropdownlist [data]="[]">
+        <ng-template kendoDropDownListNoDataTemplate>
+          <h4>No data here</h4>
+        </ng-template>
+      </kendo-dropdownlist>
+    </div>
   </div>
   <div class="col p-100">
     <div class="row">Hello</div>

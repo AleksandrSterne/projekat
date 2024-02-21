@@ -19,6 +19,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlaygroundDropdownsPageComponent {
+  public filter: string = '';
   public areaList: Array<string> = [
     'Amsterdam',
     'Athens',
@@ -73,5 +74,11 @@ export class PlaygroundDropdownsPageComponent {
     this.data = this.areaList.filter(
       (s) => s.toLowerCase().indexOf(value.toLowerCase()) !== -1
     );
+  }
+
+  addNew() {
+    this.areaList.push(this.filter);
+
+    this.handleFilter(this.filter);
   }
 }
